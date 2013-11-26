@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<div id="content">
+	<p align="right"><a href="/">Home</a> &nbsp; <a href="/logout">Logout</a></p>
+    <table cellspacing="0">
+    <tr><th>Menu</th><th></th></tr>
+    <tr><td>Username</td><td>{{ username }}</td></tr>
+    <tr><td>Permissions</td><td>{{ usertype }}</td></tr>
+    <tr><td>Pilots</td><td><a href="/pilot">Pilot Flight Details</a></td></tr>
+    <tr><td>Cabin Crew</td><td><a href="/crew">Crew Flight Details</a></td></tr>
+    <tr><td>Departures Team</td><td><a href="/team">Departure Team Flight Details</a></td></tr>
+    {% if usertype == "admin" %} 
+    	<tr><th>Admin Menu</th><th></th></tr>
+    	<tr><td>Waiting List</td><td><a href="/waiting_list">Activate Users</a></td></tr>
+    {% endif %}
+    </table>
+	</div>
+{% endblock %}

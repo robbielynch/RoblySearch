@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div id="content">
+	<p align="right"><a href="/">Home</a> &nbsp; <a href="/logout">Logout</a></p>
+	<h1 align="center">{{ title }}</h1>
+    <table cellspacing="0">
+    <tr><th>{{ col1heading }}</th><th>{{ col2heading }}</th></tr>
+    {% for flight in flights %}
+		<tr>
+			<td>{{ flight.col1 }}</td>
+			<td>{{ flight.col2 }}</td>
+		</tr>
+    {% endfor %}
+    </table>
+	</div>
+{% endblock %}

@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 
 {% block body %}
-	<form action='/signup' method='POST'>
-		Username: <input type='text' name='username'/><br />
-		Password: <input type='password' name='password'/><br />
-		<input type='submit' value="Signup" />
-	</form>
+	<section class="loginform cf">  
+		<form name="login" action="/create_new_user" method="POST" accept-charset="utf-8">  
+		    <ul>  
+		        <li><label for="email">Email</label>  
+		        <input type="email" name="email" placeholder="your@email.com" required></li>  
+		        <li><label for="password">Password</label>  
+		        <input type="password" name="password" placeholder="password" required></li>  
+		        <li><label for="name">Name</label>  
+		        <input type="text" name="name" placeholder="Earthworm Jim" required></li>
+		        <li>  
+		        <input type="submit" value="Request To Become a Member">
+		        </li>  
+		    </ul>  
+		</form>  
+		<form action="/login" method="GET">
+			<input type="submit" value="Already a Member?" accept-charset="utf-8">
+		</form>
+	</section>  
 {% endblock %}
