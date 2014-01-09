@@ -9,7 +9,7 @@ from functools import wraps
 import logging
 from mymongo import MyMongo
 import bson
-from robcrawler import getLinks,getHTML
+from robcrawler import getLinks,getHTML,getH1s
 
 
 #Constants
@@ -35,11 +35,6 @@ def check_loggied_in(func):
 @check_loggied_in
 def root():
 	return render_template('index.html', title=APP_NAME, stylesheet='main.css')
-
-@webapp.route('/crawl')
-def crawl():
-	links = getLinks("http://roblynch.info")
-	return links
 
 @webapp.route('/index')
 @check_loggied_in
@@ -113,6 +108,17 @@ def is_empty(any_structure):
 		return False
 	else:
 		return True
+
+#Crawl Pages
+@webapp.route('/crawllinks')
+def crawlLinks():
+	links = getLinks("http://roblynch.info")
+	return links
+
+@webapp.route('/crawlh1s')
+def crawlH1s():
+	h1s = getH1s("http://roblynch.info")
+	return h1s
 
 
 #If it's run directly by the python web system, start it
