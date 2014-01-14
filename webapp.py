@@ -9,7 +9,8 @@ from functools import wraps
 import logging
 from mymongo import MyMongo
 import bson
-from robcrawler import getLinks,getHTML,getH1s
+from robcrawler import getWebsiteInfo,getHTML
+from website import Website
 
 
 #Constants
@@ -109,16 +110,34 @@ def is_empty(any_structure):
 	else:
 		return True
 
-#Crawl Pages
-@webapp.route('/crawllinks')
-def crawlLinks():
-	links = getLinks("http://roblynch.info")
-	return links
+@webapp.route('/crawlall')
+def crawlall():
+	website = getWebsiteInfo("http://roblynch.info")
+	output = testWebsiteContents(website)
+	return output
 
-@webapp.route('/crawlh1s')
-def crawlH1s():
-	h1s = getH1s("http://roblynch.info")
-	return h1s
+
+def testWebsiteContents(website):
+	string = ""
+	string += "URL = " + website.url
+	string += "<br />Title = " + website.title
+	string += "<br />=============================LINKS===============================================<br />"
+	for link in website.links:
+		string += link
+		string += "<br />"
+	string += "<br />==============================END LINKS==========================================<br />"
+	string += "<br />=============================IMAGES===============================================<br />"
+	for img in website.images:
+		string += img
+		string += "<br />"
+	string += "<br />==============================END IMAGES==========================================<br />"
+	return string
+
+
+
+
+
+
 
 
 #If it's run directly by the python web system, start it
