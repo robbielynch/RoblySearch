@@ -35,9 +35,12 @@ def check_loggied_in(func):
 
 
 @webapp.route('/')
-@check_loggied_in
 def root():
-    return render_template('index.html', title=APP_NAME, stylesheet='main.css')
+    if 'logged-in' in session:
+        logged_in = True
+    else:
+        logged_in = False
+    return render_template('home.html', title=APP_NAME, logged_in=logged_in, stylesheet='main.css')
 
 
 @webapp.route('/index')
@@ -99,6 +102,12 @@ def create_new_user():
         return "User created successfully"
     else:
         return "User not created"
+
+@webapp.route('/search', methods=["POST"])
+def search():
+    search_term = request.form['search_box']
+    logging.debug(search_term)
+    return render_template('search_results.html', search_term=search_term)
 
 
 def is_empty(any_structure):

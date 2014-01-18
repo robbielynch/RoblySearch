@@ -2,18 +2,36 @@
 
 {% block body %}
 	<div id="content">
-	<p align="right"><a href="/">Home</a> &nbsp; <a href="/logout">Logout</a></p>
-    <table cellspacing="0">
-    <tr><th>Menu</th><th></th></tr>
-    <tr><td>Username</td><td>{{ username }}</td></tr>
-    <tr><td>Permissions</td><td>{{ usertype }}</td></tr>
-    <tr><td>Pilots</td><td><a href="/pilot">Pilot Flight Details</a></td></tr>
-    <tr><td>Cabin Crew</td><td><a href="/crew">Crew Flight Details</a></td></tr>
-    <tr><td>Departures Team</td><td><a href="/team">Departure Team Flight Details</a></td></tr>
-    {% if usertype == "admin" %} 
-    	<tr><th>Admin Menu</th><th></th></tr>
-    	<tr><td>Waiting List</td><td><a href="/waiting_list">Activate Users</a></td></tr>
-    {% endif %}
-    </table>
-	</div>
+        <form id="search_form" method="POST" action="/search">
+            <input name="search_box" id="search_box" type="text" />
+            <input name="search_button" id="search_button" type="submit" value="Search"/>
+            {% if logged_in %}
+            <input name="index_button" id="index_button" type="button" value="Index"/>
+            {% endif %}
+        </form>
+    </div>
+
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function() {#}
+{#            $("#search_button").click(function(){#}
+{#                var data = $("#search_box").val();#}
+{#                $.ajax({#}
+{#                    url : "/search",#}
+{#                    type: "POST",#}
+{#                    data : data,#}
+{#                    success: function(data, textStatus, jqXHR)#}
+{#                    {#}
+{#                        //data - response from server#}
+{#                        alert(data);#}
+{#                    },#}
+{#                    error: function (jqXHR, textStatus, errorThrown)#}
+{#                    {#}
+{##}
+{#                    }#}
+{#                });#}
+{#            });#}
+{#        });#}
+{#    </script>#}
+
+
 {% endblock %}
