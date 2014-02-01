@@ -1,0 +1,18 @@
+post search query
+ - post form from template
+ - parse search query
+ -
+
+crawler
+- post crawl url
+- crawl url
+- parse words
+- create website object
+- insert data into mongo
+
+
+
+query parser
+tokenise
+get rid of shit words
+search data base

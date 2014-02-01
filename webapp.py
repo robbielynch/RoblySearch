@@ -6,6 +6,7 @@ Student Number 	: C00151101
 """
 from flask import Flask, request, send_file, abort, make_response, session, escape, url_for, redirect, render_template
 from functools import wraps
+from werkzeug.datastructures import ImmutableMultiDict
 import logging
 from mymongo import MyMongo
 import bson
@@ -46,7 +47,7 @@ def root():
 @webapp.route('/index')
 @check_loggied_in
 def index():
-    return render_template('index.html', title=APP_NAME, stylesheet='main.css')
+    return render_template('home.html', title=APP_NAME, stylesheet='main.css')
 
 
 @webapp.route('/signup')
@@ -73,7 +74,7 @@ def login():
             session['logged-in'] = True
             session['username'] = user.__getitem__("name")
             session['useremail'] = user.__getitem__("email")
-            return redirect(url_for('index'))
+            return redirect(url_for('/'))
         else:
             return "User not found"
 
@@ -105,9 +106,20 @@ def create_new_user():
 
 @webapp.route('/search', methods=["POST"])
 def search():
-    search_term = request.form['search_box']
-    logging.debug(search_term)
-    return render_template('search_results.html', search_term=search_term)
+    logging.warning("in search")
+    logging.warning(request.form)
+    query = request.form['search_box']
+    logging.warning("query = " + query)
+    return render_template('search_results.html', search_term=query)
+
+@webapp.route('/index_website', methods=["POST"])
+def index_website():
+    logging.warning("in index_website")
+    logging.warning(request.form)
+    query = request.form['search_box']
+    logging.warning("query = " + query)
+    #return render_template('search_results.html', search_term=query)
+    return query
 
 
 def is_empty(any_structure):
