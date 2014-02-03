@@ -64,9 +64,17 @@ class QueryParser(object):
 
     @staticmethod
     def tokenise_string(string):
+        """
+        Splits the passed string into a list of strings, delimited by a space character
+        """
         return string.split()
 
-    def stem_token_list(self, words):
+    @staticmethod
+    def stem_token_list(words):
+        """
+        Function that uses the porter stemming algorithm attempt to automatically remove
+        suffixes (and in some cases prefixes) in order to find the "root word" or stem of a given word.
+        """
         stemmed_tokens = []
         for word in words:
             w = stem(word)

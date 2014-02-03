@@ -46,10 +46,16 @@ def get_website_object(url):
 
 
 def get_title(soup):
+    """
+    Returns the title of the webpage
+    """
     return soup.title.string
 
 
 def get_images(soup):
+    """
+    Returns: A list of URL for images found on the page
+    """
     images = []
     for pic in soup.find_all('img'):
         images.append(pic.get('src'))
@@ -57,6 +63,9 @@ def get_images(soup):
 
 
 def get_links(soup):
+    """
+    Returns:    A list of url links found on the page.
+    """
     links = []
     for link in soup.find_all('a'):
         links.append(link.get('href'))
@@ -64,6 +73,9 @@ def get_links(soup):
 
 
 def get_h1s(soup):
+    """
+    Returns:    A list of header 1 tags found on the web page
+    """
     h1s = []
     for h1 in soup.find_all('h1'):
         h1s.append(h1.string)
@@ -71,15 +83,25 @@ def get_h1s(soup):
 
 
 def get_keywords(soup):
+    """
+    Returns:    A list of keywords found in the meta tags of the webpage
+    """
     keyword_string = soup.find("meta", {"name": "keywords"})['content']
     return keyword_string.split(',')
 
 
 def get_description(soup):
+    """
+    Returns:    A string description of the website found in the meta tags in the website
+    """
     return soup.find("meta", {"name": "description"})['content']
 
 
 def robots_should_index(soup):
+    """
+    Returns:    True if the web page wants to be indexed
+                False if the web page does not want to be indexed
+    """
     if "noindex" in soup.find("meta", {"name": "robots"})['content']:
         return False
     else:

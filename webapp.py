@@ -8,7 +8,7 @@ from flask import Flask, request, send_file, abort, make_response, session, esca
 from functools import wraps
 from werkzeug.datastructures import ImmutableMultiDict
 import logging
-from mymongo import MyMongo
+from user_mongo import UserMongo
 import bson
 from robcrawler import get_website_object, get_html
 from website import Website
@@ -66,7 +66,7 @@ def login():
     if request.method == "GET":
         return render_template('login.html', title="Login", stylesheet="main.css")
     else:
-        mongo = MyMongo()
+        mongo = UserMongo()
         email = request.form['email']
         password = request.form['password']
         user = mongo.read_user(email, password)
@@ -98,7 +98,7 @@ def create_new_user():
     name = request.form['name']
     email = request.form['email']
     password = request.form['password']
-    mongo = MyMongo()
+    mongo = UserMongo()
     if mongo.create_user(name, email, password):
         return "User created successfully"
     else:
@@ -124,7 +124,7 @@ def index_website():
 
 def is_empty(any_structure):
     """
-    Simple helper function to help determin if a data
+    Simple helper function to help determine if a data
     structure is empty.
     Parameters:
         Object - Any object
