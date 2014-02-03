@@ -51,3 +51,4 @@ docs/_build/
 
 #PyCharm
 .idea/
+.idea/*
