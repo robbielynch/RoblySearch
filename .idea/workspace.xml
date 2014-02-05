@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e8f7694-f80a-4ba8-84ca-0bd47b231d34" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/robly_crawler/crawler.py" afterPath="$PROJECT_DIR$/robly_crawler/crawler.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/robly_parser/parser.py" afterPath="$PROJECT_DIR$/robly_parser/parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_parser.py" afterPath="$PROJECT_DIR$/tests/test_parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp.py" afterPath="$PROJECT_DIR$/webapp.py" />
-    </list>
+    <list default="true" id="7e8f7694-f80a-4ba8-84ca-0bd47b231d34" name="Default" comment="" />
     <ignored path="searchengine.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,60 +28,6 @@
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
-  </component>
-  <component name="DockManager">
-    <window id="2">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="parser.py" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/robly_parser/parser.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="75" column="45" selection-start="2849" selection-end="2849" vertical-scroll-proportion="0.416309" vertical-offset="887" max-vertical-offset="2125">
-                    <folding>
-                      <element signature="e#0#9#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="crawler.py" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/robly_crawler/crawler.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="20" column="7" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1955">
-                    <folding>
-                      <element signature="e#0#15#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="test_parser.py" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/tests/test_parser.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="70" column="32" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.0" vertical-offset="445" max-vertical-offset="1377">
-                    <folding>
-                      <element signature="e#0#29#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="test_crawler.py" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/tests/test_crawler.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="25" column="35" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
-                    <folding>
-                      <element signature="e#0#29#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -710,7 +651,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1288" y="-104" width="1296" height="1040" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -722,7 +663,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2654185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2654185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -818,7 +759,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_crawler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="35" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+        <state line="25" column="35" selection-start="653" selection-end="653" vertical-scroll-proportion="0.45600858" vertical-offset="0" max-vertical-offset="932">
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -850,7 +791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="32" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.0" vertical-offset="445" max-vertical-offset="1377">
+        <state line="70" column="32" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.7993562" vertical-offset="445" max-vertical-offset="1377">
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -859,7 +800,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/robly_crawler/crawler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="7" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="1955">
+        <state line="20" column="7" selection-start="610" selection-end="610" vertical-scroll-proportion="-0.072961375" vertical-offset="408" max-vertical-offset="1955">
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
