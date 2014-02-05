@@ -20,7 +20,7 @@ class QueryParser(object):
     document = "doc"
 
     def __init__(self, initial_search_query=""):
-        self.initial_search_query = initial_search_query
+        self.initial_search_query = initial_search_query.lower()
 
     def extract_context_and_search_query(self):
         """
@@ -36,31 +36,51 @@ class QueryParser(object):
                 rest_of_query = self.initial_search_query[colon_index + 1:]
                 if len(rest_of_query) > 0:
                     #Get the query without the context
-                    self.search_query = remove_unwanted_chars(rest_of_query)
+                    self.search_query = prune_string(rest_of_query)
 
                     #Get context
                     self.search_context = self.initial_search_query[:colon_index]
                     if self.search_context == self.site or self.search_context == self.image or self.search_context == self.document:
                         self.search_context = self.search_context
+                        return (self.search_query, self.search_context)
                     else:
                         self.search_context = ""
+                        return (self.search_query, self.search_context)
                 else:
                     self.search_context = ""
-                    self.search_query = remove_unwanted_chars(self.initial_search_query)
+                    self.search_query = prune_string(self.initial_search_query)
+                    return (self.search_query, self.search_context)
             else:
                 #no context
                 #search normally
                 self.search_context = ""
-                self.search_query = remove_unwanted_chars(self.initial_search_query)
+                self.search_query = prune_string(self.search_query)
+                return (self.search_query, self.search_context)
         else:
-            self.search_query = remove_unwanted_chars(self.initial_search_query)
+            self.search_query = prune_string(self.initial_search_query)
+            return (self.search_query, self.search_context)
 
+def prune_string(string):
+    """
+    Function to remove unwanted character from string,
+    remove stop words from string,
+    stem the words in the string,
+    convert to lowercase
+    Params:     string  The string that is to be pruned
+    Returns:    string  The pruned string
+    """
+    string = remove_unwanted_chars(string).lower()
+    string = tokenise_string(string)
+    string = stem_token_list(string)
+    string = remove_stop_words(string)
+    string = tokens_to_string(string).lower()
+    return string
 
 def remove_unwanted_chars(string):
     """
     Function to remove the unwanted/unnecessary chars from a string
     """
-    string = re.sub('[,!.;:#)(\]<>~=\[\\{}\(\)]', '', string)
+    string = re.sub('[,!.;:#)(\]|"#$%^&_<>~=\[\\{}\(\)]', '', string)
     return string
 
 def tokenise_string(string):
@@ -93,7 +113,7 @@ def remove_values_from_list(the_list, value_to_be_removed):
     This function removes a given value from the given list
     Returns:    The list, minus all occurrences of value_value_to_be_removed
     """
-    return [value for value in the_list if value != value_to_be_removed]
+    return [value.lower() for value in the_list if value != value_to_be_removed]
 
 
 def tokens_to_string(tokens):

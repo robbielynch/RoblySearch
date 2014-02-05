@@ -38,17 +38,8 @@ def get_website_object(url):
     #images
     images = get_images(soup)
     ## Gets the text of the web page
-    ## Removes the unwanted characters
-    ## Tokenises the string
-    ## Stems tokens
-    ## Removes stop words
-    ## Converts it back to a string
     non_html = soup.get_text()
-    non_html = parser.remove_unwanted_chars(non_html)
-    non_html = parser.tokenise_string(non_html)
-    non_html = parser.stem_token_list(non_html)
-    non_html = parser.remove_stop_words(non_html)
-    non_html = parser.tokens_to_string(non_html)
+    non_html = parser.prune_string(non_html)
 
     #Create website object
     website = Website(url, title, h1s, links, images, non_html, description,

@@ -2,28 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e8f7694-f80a-4ba8-84ca-0bd47b231d34" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/robly_crawler/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/robly_dto/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/robly_mongo/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/robly_parser/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/robly_mongo/image_mongo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/robly_parser/parser.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/stop_words.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_image_mongo.py" />
-      <change type="DELETED" beforePath="C:\dev\computer-science\searchengine\image_mongo.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\dev\computer-science\searchengine\query_parser.py" afterPath="" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\link_mongo.py" afterPath="$PROJECT_DIR$/robly_mongo/link_mongo.py" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\robcrawler.py" afterPath="$PROJECT_DIR$/robly_crawler/crawler.py" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\tests\test_queryParser.py" afterPath="$PROJECT_DIR$/tests/test_parser.py" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\tests\test_robcrawler.py" afterPath="$PROJECT_DIR$/tests/test_crawler.py" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\user_mongo.py" afterPath="$PROJECT_DIR$/robly_mongo/user_mongo.py" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\website.py" afterPath="$PROJECT_DIR$/robly_dto/website.py" />
-      <change type="MOVED" beforePath="C:\dev\computer-science\searchengine\website_mongo.py" afterPath="$PROJECT_DIR$/robly_mongo/website_mongo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/searchengine.iml" afterPath="$PROJECT_DIR$/.idea/searchengine.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/robly_crawler/crawler.py" afterPath="$PROJECT_DIR$/robly_crawler/crawler.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/robly_parser/parser.py" afterPath="$PROJECT_DIR$/robly_parser/parser.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_parser.py" afterPath="$PROJECT_DIR$/tests/test_parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webapp.py" afterPath="$PROJECT_DIR$/webapp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="searchengine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,9 +19,12 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/searchengine$Unittest_TestQueryParser_test_remove_stop_words.coverage" NAME="Unittest TestQueryParser.test_remove_stop_words Coverage Results" MODIFIED="1391549012874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/searchengine$Unittest_TestQueryParser_test_tokenise_string.coverage" NAME="Unittest TestQueryParser.test_tokenise_string Coverage Results" MODIFIED="1391601130708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/searchengine$Unittests_in_TestQueryParser.coverage" NAME="Unittests in TestQueryParser Coverage Results" MODIFIED="1391613143741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/searchengine$Unittest_TestImageMongo_test_search_query_and_context_with_site.coverage" NAME="Unittest TestImageMongo.test_search_query_and_context_with_site Coverage Results" MODIFIED="1391451181377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/searchengine$Unittest_TestQueryParser_test_prune_string.coverage" NAME="Unittest TestQueryParser.test_prune_string Coverage Results" MODIFIED="1391612924401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/searchengine$Unittests_in_test_queryParser.coverage" NAME="Unittests in test_queryParser Coverage Results" MODIFIED="1391603182898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/searchengine$Unittest_TestQueryParser_test_stem_token_list.coverage" NAME="Unittest TestQueryParser.test_stem_token_list Coverage Results" MODIFIED="1391548362209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/searchengine$Unittest_TestQueryParser_test_remove_stop_words__1_.coverage" NAME="Unittest TestQueryParser.test_remove_stop_words (1) Coverage Results" MODIFIED="1391612482277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/searchengine$Unittest_TestRobCrawler_test_title_correct.coverage" NAME="Unittest TestRobCrawler.test_title_correct Coverage Results" MODIFIED="1391602612936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/searchengine$Unittests_in_test_robcrawler.coverage" NAME="Unittests in test_robcrawler Coverage Results" MODIFIED="1391603109486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -57,7 +42,7 @@
             <file leaf-file-name="parser.py" pinned="false" current="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/robly_parser/parser.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="78" column="22" selection-start="2683" selection-end="2683" vertical-scroll-proportion="0.5622318" vertical-offset="802" max-vertical-offset="1785">
+                  <state line="75" column="45" selection-start="2849" selection-end="2849" vertical-scroll-proportion="0.416309" vertical-offset="887" max-vertical-offset="2125">
                     <folding>
                       <element signature="e#0#9#0" expanded="true" />
                     </folding>
@@ -68,9 +53,31 @@
             <file leaf-file-name="crawler.py" pinned="false" current="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/robly_crawler/crawler.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state line="41" column="27" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="2108">
+                  <state line="20" column="7" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1955">
                     <folding>
                       <element signature="e#0#15#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="test_parser.py" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/tests/test_parser.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="70" column="32" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.0" vertical-offset="445" max-vertical-offset="1377">
+                    <folding>
+                      <element signature="e#0#29#0" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="test_crawler.py" pinned="false" current="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/tests/test_crawler.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state line="25" column="35" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+                    <folding>
+                      <element signature="e#0#29#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
@@ -99,17 +106,10 @@
       <file leaf-file-name="website_mongo.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/robly_mongo/website_mongo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="32" selection-end="66" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="629">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_image_mongo.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_image_mongo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="0" selection-start="613" selection-end="613" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="561">
-              <folding />
+            <state line="5" column="23" selection-start="112" selection-end="112" vertical-scroll-proportion="0.1326053" vertical-offset="0" max-vertical-offset="641">
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -117,7 +117,7 @@
       <file leaf-file-name="link_mongo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/robly_mongo/link_mongo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="22" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="442">
+            <state line="13" column="22" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
               <folding />
             </state>
           </provider>
@@ -126,30 +126,8 @@
       <file leaf-file-name="stop_words.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/stop_words.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="24" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="3179">
+            <state line="11" column="24" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="3179">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_crawler.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_crawler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="35" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_parser.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_parser.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="1" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -166,7 +144,7 @@
       <file leaf-file-name="webapp.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2992">
+            <state line="129" column="0" selection-start="3574" selection-end="3574" vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="3111">
               <folding>
                 <element signature="e#61#88#0" expanded="true" />
               </folding>
@@ -192,10 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/webapp.py" />
-        <option value="$PROJECT_DIR$/user_mongo.py" />
-        <option value="$PROJECT_DIR$/link_mongo.py" />
-        <option value="$PROJECT_DIR$/website_mongo.py" />
         <option value="$PROJECT_DIR$/tests/test_image_mongo.py" />
         <option value="$PROJECT_DIR$/image_mongo.py" />
         <option value="$PROJECT_DIR$/data/stop_words.py" />
@@ -208,6 +182,10 @@
         <option value="$PROJECT_DIR$/robcrawler.py" />
         <option value="$PROJECT_DIR$/rob_parser/rob_parser.py" />
         <option value="$PROJECT_DIR$/tests/test_robcrawler.py" />
+        <option value="$PROJECT_DIR$/tests/test_parser.py" />
+        <option value="$PROJECT_DIR$/webapp.py" />
+        <option value="$PROJECT_DIR$/robly_crawler/crawler.py" />
+        <option value="$PROJECT_DIR$/robly_parser/parser.py" />
       </list>
     </option>
   </component>
@@ -365,7 +343,7 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in test_parser">
+  <component name="RunManager" selected="Python tests.Unittests in TestQueryParser">
     <configuration default="false" name="Unittests in test_crawler" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -391,81 +369,6 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest TestQueryParser.test_stem_token_list" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="searchengine" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\dev\computer-science\searchengine\tests\test_parser.py" />
-      <option name="CLASS_NAME" value="TestQueryParser" />
-      <option name="METHOD_NAME" value="test_stem_token_list" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest TestQueryParser.test_remove_stop_words" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="searchengine" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\dev\computer-science\searchengine\tests\test_parser.py" />
-      <option name="CLASS_NAME" value="TestQueryParser" />
-      <option name="METHOD_NAME" value="test_remove_stop_words" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest TestQueryParser.test_tokenise_string" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="searchengine" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\dev\computer-science\searchengine\tests\test_parser.py" />
-      <option name="CLASS_NAME" value="TestQueryParser" />
-      <option name="METHOD_NAME" value="test_tokenise_string" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
     <configuration default="false" name="Unittest TestRobCrawler.test_title_correct" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -480,6 +383,81 @@
       <option name="SCRIPT_NAME" value="C:\dev\computer-science\searchengine\tests\test_crawler.py" />
       <option name="CLASS_NAME" value="TestRobCrawler" />
       <option name="METHOD_NAME" value="test_title_correct" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in TestQueryParser" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="searchengine" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_parser.py" />
+      <option name="CLASS_NAME" value="TestQueryParser" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest TestQueryParser.test_remove_stop_words (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="searchengine" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_parser.py" />
+      <option name="CLASS_NAME" value="TestQueryParser" />
+      <option name="METHOD_NAME" value="test_remove_stop_words" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest TestQueryParser.test_prune_string" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="searchengine" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_parser.py" />
+      <option name="CLASS_NAME" value="TestQueryParser" />
+      <option name="METHOD_NAME" value="test_prune_string" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -689,18 +667,18 @@
       <item index="0" class="java.lang.String" itemvalue="Python.searchengine" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test_parser" />
       <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test_crawler" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_stem_token_list" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_remove_stop_words" />
-      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_tokenise_string" />
-      <item index="6" class="java.lang.String" itemvalue="Python tests.Unittest TestRobCrawler.test_title_correct" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestRobCrawler.test_title_correct" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in TestQueryParser" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_remove_stop_words (1)" />
+      <item index="6" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_prune_string" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_crawler" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestRobCrawler.test_title_correct" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_tokenise_string" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_remove_stop_words" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_stem_token_list" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestQueryParser" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_prune_string" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest TestQueryParser.test_remove_stop_words (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test_crawler" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest TestRobCrawler.test_title_correct" />
       </list>
     </recent_temporary>
   </component>
@@ -740,11 +718,11 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819384" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21328124" sideWeight="0.69162995" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17734376" sideWeight="0.69162995" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30837005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2654185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -753,6 +731,26 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819384" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24963397" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17734376" sideWeight="0.69162995" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30837005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -768,21 +766,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/search_results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="116" selection-end="116" vertical-scroll-proportion="0.21283785" vertical-offset="0" max-vertical-offset="592" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/robly_dto/website.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="17" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="486">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robly_mongo/link_mongo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
           <folding />
         </state>
       </provider>
@@ -804,13 +790,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/stop_words.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="24" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3179">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="545" />
@@ -823,37 +802,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/robly_mongo/user_mongo.py">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="861">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_parser.py">
+    <entry file="file://$PROJECT_DIR$/robly_mongo/link_mongo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="1" selection-start="225" selection-end="225" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1309">
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robly_crawler/crawler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="27" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="2108">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/robly_parser/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="22" selection-start="2683" selection-end="2683" vertical-scroll-proportion="0.5622318" vertical-offset="802" max-vertical-offset="1785">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state line="13" column="22" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -866,19 +825,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/robly_mongo/user_mongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/stop_words.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="24" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="969" max-vertical-offset="3179">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/webapp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="2992">
+        <state line="129" column="0" selection-start="3574" selection-end="3574" vertical-scroll-proportion="0.0" vertical-offset="1683" max-vertical-offset="3111">
           <folding>
             <element signature="e#61#88#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="32" selection-start="2719" selection-end="2719" vertical-scroll-proportion="0.0" vertical-offset="445" max-vertical-offset="1377">
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robly_crawler/crawler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="7" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="1955">
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/robly_parser/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="45" selection-start="2849" selection-end="2849" vertical-scroll-proportion="0.416309" vertical-offset="887" max-vertical-offset="2125">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/robly_mongo/website_mongo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="32" selection-end="66" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
-          <folding />
+        <state line="5" column="23" selection-start="112" selection-end="112" vertical-scroll-proportion="0.1326053" vertical-offset="0" max-vertical-offset="641">
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

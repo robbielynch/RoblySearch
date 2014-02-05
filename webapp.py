@@ -11,6 +11,7 @@ from flask import Flask, request, session, url_for, redirect, render_template
 
 from robly_mongo.user_mongo import UserMongo
 from robly_crawler.crawler import get_website_object
+from robly_parser.parser import QueryParser
 
 
 
@@ -110,7 +111,13 @@ def search():
     logging.warning(request.form)
     query = request.form['search_box']
     logging.warning("query = " + query)
-    return render_template('search_results.html', search_term=query)
+    #Create query parser object with query string provided by user
+    query_parser = QueryParser(query)
+    search_query, search_context = query_parser.extract_context_and_search_query()
+    print("Search Query=", search_query, "\nSearch Context=", search_context)
+    #query should now have been pruned of unnecessary words and characters
+    #TODO - Query database for results
+    return render_template('search_results.html', search_term=search_query)
 
 @webapp.route('/index_website', methods=["POST"])
 def index_website():

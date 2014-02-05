@@ -1,6 +1,6 @@
 from unittest import TestCase
 from robly_parser.parser import QueryParser, remove_unwanted_chars, tokenise_string, stem_token_list, \
-    remove_stop_words, remove_values_from_list, tokens_to_string
+    remove_stop_words, remove_values_from_list, tokens_to_string, prune_string
 
 __author__ = 'robbie'
 
@@ -15,34 +15,34 @@ class TestQueryParser(TestCase):
         pass
 
     def test_search_query_and_context_with_site(self):
-        qp = QueryParser("site:my custom search query")
+        qp = QueryParser("site:my custom search")
         qp.extract_context_and_search_query()
         self.assertEqual("site", qp.search_context)
-        self.assertEqual("my custom search query", qp.search_query)
+        self.assertEqual("custom search", qp.search_query)
 
     def test_search_query_and_context_with_image(self):
-        qp = QueryParser("image:my custom search query")
+        qp = QueryParser("image:my custom search")
         qp.extract_context_and_search_query()
         self.assertEqual("image", qp.search_context)
-        self.assertEqual("my custom search query", qp.search_query)
+        self.assertEqual("custom search", qp.search_query)
 
     def test_search_query_and_context_with_doc(self):
-        qp = QueryParser("doc:my custom search query")
+        qp = QueryParser("doc:my custom search")
         qp.extract_context_and_search_query()
         self.assertEqual("doc", qp.search_context)
-        self.assertEqual("my custom search query", qp.search_query)
+        self.assertEqual("custom search", qp.search_query)
 
     def test_search_query_and_context_with_no_context(self):
-        qp = QueryParser("my custom search query")
+        qp = QueryParser("custom search")
         qp.extract_context_and_search_query()
         self.assertEqual("", qp.search_context)
-        self.assertEqual("my custom search query", qp.search_query)
+        self.assertEqual("custom search", qp.search_query)
 
     def test_search_query_and_context_with_invalid_context(self):
-        qp = QueryParser("randomContext:my custom search query")
+        qp = QueryParser("randomContext:my custom search")
         qp.extract_context_and_search_query()
         self.assertEqual("", qp.search_context)
-        self.assertEqual("my custom search query", qp.search_query)
+        self.assertEqual("custom search", qp.search_query)
 
     def test_remove_unwanted_chars(self):
         qp = QueryParser()
@@ -67,6 +67,10 @@ class TestQueryParser(TestCase):
         expected_tokens = ["covert"]
         qp = QueryParser()
         self.assertEqual(expected_tokens, remove_stop_words(tokens))
+
+    def test_prune_string(self):
+        string = "I am a great guy."
+        self.assertEqual("great guy", prune_string(string))
 
     def tearDown(self):
         pass
