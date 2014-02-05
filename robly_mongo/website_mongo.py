@@ -8,6 +8,9 @@ class WebsiteMongo:
         self.db = self.client.test
 
     def create_website(self, website):
+        """
+        Inserts a website object into the mongoDB website collection
+        """
         website_collection = self.db.websites
         website_id = website_collection.insert({"title": website.title, "url": website.url,
                                                 "description": website.description,

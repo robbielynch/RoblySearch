@@ -1,5 +1,5 @@
 from unittest import TestCase
-from robcrawler import get_website_object
+from robly_crawler.crawler import get_website_object
 
 __author__ = 'robbie'
 
@@ -9,11 +9,12 @@ class TestRobCrawler(TestCase):
     """
     This Class tests the functionality of the QueryParser Class
     """
-    website_url = "http://ierlang.org/t3m60rary111.html"
-    website = get_website_object(website_url)
+    website_url = ""
+    website = ""
 
     def setUp(self):
-        pass
+        self.website_url = "http://ierlang.org/t3m60rary111.html"
+        self.website = get_website_object(self.website_url)
 
     def test_title_correct(self):
         self.assertEqual("Test Title", self.website.title)

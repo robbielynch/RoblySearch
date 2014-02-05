@@ -1,5 +1,6 @@
 import re
 from stemming.porter2 import stem
+from data import stop_words
 
 
 class QueryParser(object):
@@ -35,7 +36,7 @@ class QueryParser(object):
                 rest_of_query = self.initial_search_query[colon_index + 1:]
                 if len(rest_of_query) > 0:
                     #Get the query without the context
-                    self.search_query = self.remove_unwanted_chars(rest_of_query)
+                    self.search_query = remove_unwanted_chars(rest_of_query)
 
                     #Get context
                     self.search_context = self.initial_search_query[:colon_index]
@@ -45,38 +46,55 @@ class QueryParser(object):
                         self.search_context = ""
                 else:
                     self.search_context = ""
-                    self.search_query = self.remove_unwanted_chars(self.initial_search_query)
+                    self.search_query = remove_unwanted_chars(self.initial_search_query)
             else:
                 #no context
                 #search normally
                 self.search_context = ""
-                self.search_query = self.remove_unwanted_chars(self.initial_search_query)
+                self.search_query = remove_unwanted_chars(self.initial_search_query)
         else:
-            self.search_query = self.remove_unwanted_chars(self.initial_search_query)
+            self.search_query = remove_unwanted_chars(self.initial_search_query)
 
-    @staticmethod
-    def remove_unwanted_chars(string):
-        """
-        Function to remove the unwanted/unnecessary chars from a string
-        """
-        string = re.sub('[,!.;:#)(\]<>~=\[\\{}\(\)]', '', string)
-        return string
 
-    @staticmethod
-    def tokenise_string(string):
-        """
-        Splits the passed string into a list of strings, delimited by a space character
-        """
-        return string.split()
+def remove_unwanted_chars(string):
+    """
+    Function to remove the unwanted/unnecessary chars from a string
+    """
+    string = re.sub('[,!.;:#)(\]<>~=\[\\{}\(\)]', '', string)
+    return string
 
-    @staticmethod
-    def stem_token_list(words):
-        """
-        Function that uses the porter stemming algorithm attempt to automatically remove
-        suffixes (and in some cases prefixes) in order to find the "root word" or stem of a given word.
-        """
-        stemmed_tokens = []
-        for word in words:
-            w = stem(word)
-            stemmed_tokens.append(w)
-        return stemmed_tokens
+def tokenise_string(string):
+    """
+    Splits the passed string into a list of strings, delimited by a space character
+    """
+    return string.split()
+
+def stem_token_list(words):
+    """
+    Function that uses the porter stemming algorithm to remove suffixes(and in some cases prefixes)
+    in order to find the "root word" or stem of a given word.
+    """
+    stemmed_tokens = []
+    for word in words:
+        w = stem(word)
+        stemmed_tokens.append(w)
+    return stemmed_tokens
+
+def remove_stop_words(tokens):
+    """
+    Removes the list of imported stop_words from the list of tokens
+    """
+    for word in stop_words.STOP_WORDS:
+        tokens = remove_values_from_list(tokens, word)
+    return tokens
+
+def remove_values_from_list(the_list, value_to_be_removed):
+    """
+    This function removes a given value from the given list
+    Returns:    The list, minus all occurrences of value_value_to_be_removed
+    """
+    return [value for value in the_list if value != value_to_be_removed]
+
+
+def tokens_to_string(tokens):
+    return " ".join(tokens)

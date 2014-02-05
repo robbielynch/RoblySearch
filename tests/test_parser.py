@@ -1,5 +1,6 @@
 from unittest import TestCase
-from query_parser import QueryParser
+from robly_parser.parser import QueryParser, remove_unwanted_chars, tokenise_string, stem_token_list, \
+    remove_stop_words, remove_values_from_list, tokens_to_string
 
 __author__ = 'robbie'
 
@@ -47,19 +48,25 @@ class TestQueryParser(TestCase):
         qp = QueryParser()
         test_string = "[}a>..,b()>,<c::d~ef~~"
         expected_string = "abcdef"
-        self.assertEqual(expected_string, qp.remove_unwanted_chars(test_string))
+        self.assertEqual(expected_string, remove_unwanted_chars(test_string))
 
-    def test_remove_unwanted_chars(self):
+    def test_tokenise_string(self):
         qp = QueryParser("test")
         test_string = "this is a test string"
         expected_list = ["this", "is", "a", "test", "string"]
-        self.assertEqual(expected_list, qp.tokenise_string(test_string))
+        self.assertEqual(expected_list, tokenise_string(test_string))
 
     def test_stem_token_list(self):
         tokens = ["actually", "running", "covert", "money", "rabbits"]
         expected_tokens = ["actual", "run", "covert", "money", "rabbit"]
         qp = QueryParser()
-        self.assertEqual(expected_tokens, qp.stem_token_list(tokens))
+        self.assertEqual(expected_tokens, stem_token_list(tokens))
+
+    def test_remove_stop_words(self):
+        tokens = ["and", "any", "covert", "are"]
+        expected_tokens = ["covert"]
+        qp = QueryParser()
+        self.assertEqual(expected_tokens, remove_stop_words(tokens))
 
     def tearDown(self):
         pass
