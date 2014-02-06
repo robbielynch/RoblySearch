@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from robly_dto.website import Website
 from robly_parser import parser
 import time
+from tldextract import tldextract
 
 
 def get_html(url):
@@ -17,17 +18,56 @@ def get_html(url):
     res = requests.get(url, headers=headers)
     return str(BeautifulSoup(res.content))
 
+
+def merge_link_with_base_url(url, link):
+    """
+    Function that gets the base url of the passed url, and merges it with the
+    passed link and returns the concatenated string.
+    e.g. When url = 'http://roblynch.info/awesome/stuff'
+    and link = '/static/images/logo.png'
+    The resulting merged string will look like "http://roblynch.info/static/image/logo.png"
+    Params:     url - a string containing the url to be merged with the link
+                link - the string link to be appended to the base_url.
+                       Only links beginning with '/' are accepted
+    Returns:    A merged string containing:
+                The protocol of the url, the merged base url and the link
+    """
+    #Determine if it begins with http or https
+    if url.startswith('https'):
+        protocol = "https://"
+    else:
+        protocol = "http://"
+    #Get base url
+    tld = tldextract.extract(url)
+    print(tld.subdomain, ' - ', tld.domain, ' - ', tld.suffix)
+    if tld.subdomain != "":
+        base_url = '.'.join([tld.subdomain, tld.domain, tld.suffix])
+    else:
+        base_url = '.'.join([tld.domain, tld.suffix])
+    #Join protocol to base url to link
+        if link.startswith('/'):
+            merged_string = protocol + base_url + link
+        else:
+            merged_string = protocol + base_url + '/' + link
+    return merged_string
+
+
 def crawl_website_insert_to_database(url):
     """
-    Function to crawl the given url and the pages it links to.
-
+    Function to crawl the given url and the pages it links to at a depth of 1.
+    Params:     string - the url of the website that is to be crawled
+    Returns:    List - of website objects containing each of the crawled websites data
     """
     website = get_website_object(url)
     if website:
         website_list = [website]
         if website.links:
             for w in website.links:
-                if w != url and not '#' in w and w.startswith('http'):
+                #Append base url to beginning of links beginning with /
+                if w.startswith('/'):
+                    w = merge_link_with_base_url(website.url, w)
+                #Crawl the valid links
+                if w != url and not '#' in w and not w.startswith('/') and w.startswith('http'):
                     website_obj = get_website_object(w)
                     website_list.append(website_obj)
                 time.sleep(2)
@@ -35,16 +75,12 @@ def crawl_website_insert_to_database(url):
     return []
 
 
-
-
-
-
 def get_website_object(url):
     """
     This function parses the url, creates a website object for easy access
     to all html elements that are to be stored in the database.
-    Params : url                    The url of the website to be parsed
-    Return : website                Website object containing all websites data
+    Params : url        The url of the website to be parsed
+    Return : website    Website object containing all websites data
     """
     print("crawling - ", url)
     #get html

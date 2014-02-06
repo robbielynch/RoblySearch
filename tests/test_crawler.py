@@ -1,5 +1,5 @@
 from unittest import TestCase
-from robly_crawler.crawler import get_website_object, crawl_website_insert_to_database
+from robly_crawler.crawler import get_website_object, crawl_website_insert_to_database, merge_link_with_base_url
 
 __author__ = 'robbie'
 
@@ -47,3 +47,10 @@ class TestRobCrawler(TestCase):
         url = "http://duckduckgo.com"
         website_objects = crawl_website_insert_to_database(url)
         self.assertIsNotNone(website_objects)
+
+    def test_merge_link_with_base_url(self):
+        url = "http://roblynch.info/blog/awesomeness"
+        link = "/static/imgs/logo.png"
+        expected = "roblynch.info/static/imgs/logo.png"
+        merged_string = merge_link_with_base_url(url, link)
+        self.assertEqual(expected, merged_string)
