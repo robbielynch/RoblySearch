@@ -147,26 +147,34 @@ def is_empty(any_structure):
 
 @webapp.route('/crawlall')
 def crawlall():
-    website = get_website_object("http://roblynch.info")
+    website = get_website_object("http://duckduckgo.com")
     output = test_website_contents(website)
     return output
 
 
 def test_website_contents(website):
-    string = ""
-    string += "URL = " + website.url
-    string += "<br />Title = " + website.title
-    string += "<br />=============================LINKS===============================================<br />"
-    for link in website.links:
-        string += link
-        string += "<br />"
-    string += "<br />==============================END LINKS==========================================<br />"
-    string += "<br />=============================IMAGES===============================================<br />"
-    for img in website.images:
-        string += img
-        string += "<br />"
-    string += "<br />==============================END IMAGES==========================================<br />"
-    return string
+    if website:
+        string = ""
+        if website.url:
+            string += "URL = " + website.url
+        if website.title:
+            string += "<br />Title = " + website.title
+        if website.links is not None:
+            string += "<br />=============================LINKS===============================================<br />"
+            for link in website.links:
+                if link is not None:
+                    string += link
+                    string += "<br />"
+            string += "<br />==============================END LINKS==========================================<br />"
+        if website.images:
+            string += "<br />=============================IMAGES===============================================<br />"
+            for img in website.images:
+                string += img
+                string += "<br />"
+            string += "<br />==============================END IMAGES==========================================<br />"
+        return string
+    else:
+        return "No content found in website"
 
 
 #If it's run directly by the python web system, start it

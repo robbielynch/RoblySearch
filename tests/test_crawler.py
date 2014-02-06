@@ -1,5 +1,5 @@
 from unittest import TestCase
-from robly_crawler.crawler import get_website_object
+from robly_crawler.crawler import get_website_object, crawl_website_insert_to_database
 
 __author__ = 'robbie'
 
@@ -42,3 +42,8 @@ class TestRobCrawler(TestCase):
 
     def test_desc_correct(self):
         self.assertEqual("test description", self.website.description)
+
+    def test_crawl_website_insert_to_database(self):
+        url = "http://duckduckgo.com"
+        website_objects = crawl_website_insert_to_database(url)
+        self.assertIsNotNone(website_objects)

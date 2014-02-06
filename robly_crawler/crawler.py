@@ -2,14 +2,41 @@ import requests
 from bs4 import BeautifulSoup
 from robly_dto.website import Website
 from robly_parser import parser
+import time
 
 
 def get_html(url):
     """
     Function to return the HTML content of a url
     """
-    res = requests.get(url)
+    headers = {'Accept':'text/css,*/*;q=0.1',
+        'Accept-Charset':'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+        'Accept-Encoding':'gzip,deflate,sdch',
+        'Accept-Language':'en-US,en;q=0.8',
+        'User-Agent':'Mozilla/5 (Windows 7) Gecko'}
+    res = requests.get(url, headers=headers)
     return str(BeautifulSoup(res.content))
+
+def crawl_website_insert_to_database(url):
+    """
+    Function to crawl the given url and the pages it links to.
+
+    """
+    website = get_website_object(url)
+    if website:
+        website_list = [website]
+        if website.links:
+            for w in website.links:
+                if w != url and not '#' in w and w.startswith('http'):
+                    website_obj = get_website_object(w)
+                    website_list.append(website_obj)
+                time.sleep(2)
+        return website_list
+    return []
+
+
+
+
 
 
 def get_website_object(url):
@@ -19,32 +46,67 @@ def get_website_object(url):
     Params : url                    The url of the website to be parsed
     Return : website                Website object containing all websites data
     """
+    print("crawling - ", url)
     #get html
-    html = get_html(url)
+    try:
+        html = get_html(url)
+    except Exception:
+        pass
     #parse website info
-    soup = BeautifulSoup(html)
-    #title
-    title = get_title(soup)
-    #description
-    description = get_description(soup)
-    #keyword list
-    keywords = get_keywords(soup)
-    #robots follow
-    robots_index = robots_should_index(soup)
-    #links
-    links = get_links(soup)
-    #h1s
-    h1s = get_h1s(soup)
-    #images
-    images = get_images(soup)
-    ## Gets the text of the web page
-    non_html = soup.get_text()
-    non_html = parser.prune_string(non_html)
+    try:
+        soup = BeautifulSoup(html)
+    except Exception:
+        pass
 
-    #Create website object
-    website = Website(url, title, h1s, links, images, non_html, description,
-                      keywords, robots_index)
-    return website
+    if soup:
+        #title
+        try:
+            title = get_title(soup)
+        except Exception:
+            title = ""
+        #description
+        try:
+            description = get_description(soup)
+        except Exception:
+            description = ""
+        #keyword list
+        try:
+            keywords = get_keywords(soup)
+        except Exception:
+            keywords = []
+        #robots follow
+        try:
+            robots_index = robots_should_index(soup)
+        except Exception:
+            robots_index = True
+        #links
+        try:
+            links = get_links(soup)
+        except Exception:
+            links = []
+        #h1s
+        try:
+            h1s = get_h1s(soup)
+        except Exception:
+            h1s = []
+        #images
+        try:
+            images = get_images(soup)
+        except Exception:
+            images = []
+        ## Get the text of the web page
+        try:
+            non_html = soup.get_text()
+            non_html = parser.prune_string(non_html)
+        except Exception:
+            non_html = ""
+
+        #Create website object
+        website = Website(url, title, h1s, links, images, non_html, description,
+                          keywords, robots_index)
+        return website
+    else:
+        return None
 
 
 def get_title(soup):
