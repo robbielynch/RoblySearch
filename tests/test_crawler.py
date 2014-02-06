@@ -35,6 +35,7 @@ class TestRobCrawler(TestCase):
         self.assertEqual(1, len(self.website.images))
 
     def test_nonhtml_correct(self):
+        print(self.website.non_html)
         self.assertNotEqual("", self.website.non_html)
 
     def test_links_correct(self):
@@ -44,13 +45,13 @@ class TestRobCrawler(TestCase):
         self.assertEqual("test description", self.website.description)
 
     def test_crawl_website_insert_to_database(self):
-        url = "http://duckduckgo.com"
+        url = "http://roblynch.info"
         website_objects = crawl_website_insert_to_database(url)
         self.assertIsNotNone(website_objects)
 
     def test_merge_link_with_base_url(self):
         url = "http://roblynch.info/blog/awesomeness"
         link = "/static/imgs/logo.png"
-        expected = "roblynch.info/static/imgs/logo.png"
+        expected = "http://roblynch.info/static/imgs/logo.png"
         merged_string = merge_link_with_base_url(url, link)
         self.assertEqual(expected, merged_string)

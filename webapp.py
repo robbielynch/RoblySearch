@@ -147,7 +147,7 @@ def is_empty(any_structure):
 
 @webapp.route('/crawlall')
 def crawlall():
-    website = get_website_object("http://duckduckgo.com")
+    website = get_website_object("http://roblynch.info")
     output = test_website_contents(website)
     return output
 

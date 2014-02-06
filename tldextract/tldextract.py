@@ -33,7 +33,6 @@ from operator import itemgetter
 import os
 import sys
 import warnings
-__author__ = 'robbie'
 
 try:
     import pkg_resources

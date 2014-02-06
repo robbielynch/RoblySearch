@@ -19,6 +19,30 @@ def get_html(url):
     return str(BeautifulSoup(res.content))
 
 
+def get_base_url(url):
+    """
+    Takes as input a url, returns the protocol,domain and suffix concatenated
+    to form the base url of the website.
+    """
+    tld = tldextract.extract(url)
+    print(tld.subdomain, ' - ', tld.domain, ' - ', tld.suffix)
+    if tld.subdomain != "":
+        base_url = '.'.join([tld.subdomain, tld.domain, tld.suffix])
+    else:
+        base_url = '.'.join([tld.domain, tld.suffix])
+    return base_url
+
+def get_protocol(url):
+    """
+    Returns whether the url is https or http and returns the protocol as a string
+    """
+    if url.startswith('https'):
+        protocol = "https://"
+    else:
+        protocol = "http://"
+    return protocol
+
+
 def merge_link_with_base_url(url, link):
     """
     Function that gets the base url of the passed url, and merges it with the
@@ -32,22 +56,14 @@ def merge_link_with_base_url(url, link):
     Returns:    A merged string containing:
                 The protocol of the url, the merged base url and the link
     """
-    #Determine if it begins with http or https
-    if url.startswith('https'):
-        protocol = "https://"
-    else:
-        protocol = "http://"
+    #Get protocol
+    protocol = get_protocol(url)
     #Get base url
-    tld = tldextract.extract(url)
-    print(tld.subdomain, ' - ', tld.domain, ' - ', tld.suffix)
-    if tld.subdomain != "":
-        base_url = '.'.join([tld.subdomain, tld.domain, tld.suffix])
-    else:
-        base_url = '.'.join([tld.domain, tld.suffix])
+    base_url = get_base_url(url)
     #Join protocol to base url to link
-        if link.startswith('/'):
-            merged_string = protocol + base_url + link
-        else:
+    if link.startswith('/'):
+        merged_string = protocol + base_url + link
+    else:
             merged_string = protocol + base_url + '/' + link
     return merged_string
 
@@ -73,6 +89,15 @@ def crawl_website_insert_to_database(url):
                 time.sleep(2)
         return website_list
     return []
+
+
+def insert_base_url_before_relative_path_links(url, images):
+    for n, image in enumerate(images):
+        if not image.startswith('http'):
+            #Append base url to the image link
+            images[n] = merge_link_with_base_url(url, image)
+    return images
+
 
 
 def get_website_object(url):
@@ -108,6 +133,7 @@ def get_website_object(url):
         #keyword list
         try:
             keywords = get_keywords(soup)
+            keywords = list(set(keywords))
         except Exception:
             keywords = []
         #robots follow
@@ -118,16 +144,23 @@ def get_website_object(url):
         #links
         try:
             links = get_links(soup)
+            #Remove duplicates from list of links
+            links = list(set(links))
         except Exception:
             links = []
         #h1s
         try:
             h1s = get_h1s(soup)
+            h1s = list(set(h1s))
         except Exception:
             h1s = []
         #images
         try:
             images = get_images(soup)
+            #remove duplicates from images
+            images = list(set(images))
+            #make sure each image is a full url
+            images = insert_base_url_before_relative_path_links(url, images)
         except Exception:
             images = []
         ## Get the text of the web page
