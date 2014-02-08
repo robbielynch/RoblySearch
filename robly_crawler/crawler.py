@@ -22,7 +22,7 @@ def get_html(url):
 def get_base_url(url):
     """
     Takes as input a url, returns the protocol,domain and suffix concatenated
-    to form the base url of the website.
+    to form the base url of the website. Uses the tldextract library.
     """
     tld = tldextract.extract(url)
     print(tld.subdomain, ' - ', tld.domain, ' - ', tld.suffix)
@@ -75,6 +75,7 @@ def crawl_website_insert_to_database(url):
     Returns:    List - of website objects containing each of the crawled websites data
     """
     website = get_website_object(url)
+    print("Number of website that will be crawled =", len(website.links))
     if website:
         website_list = [website]
         if website.links:

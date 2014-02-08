@@ -9,8 +9,8 @@ class Website(object):
     images = []
     non_html = ""
 
-    def __init__(self, url, title, h1s, links, images, non_html,
-                 description, keywords, robots_index):
+    def __init__(self, url="", title="", h1s=[], links=[], images=[], non_html="",
+                 description="", keywords=[], robots_index=True):
         self.url = url
         self.title = title
         self.description = description

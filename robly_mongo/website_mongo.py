@@ -25,7 +25,25 @@ class WebsiteMongo:
         else:
             return False
 
-    def read_user(self, email, password):
-        users = self.db['users']
-        user = users.find_one({"email": email, "password": password})
-        return user
+    def search_websites(self, search_query, context=""):
+        #self.db.websites.ensureIndex( {type:"text"}, {unique: false, name: "type_index"})
+        self.db.websites.create_index(
+            [
+                ('title', 'text'),
+                ('non_html', 'text'),
+                ('description', 'text')
+            ],
+            weights={
+                'title': 10,
+                'description': 5,
+                'non_html': 2
+            }
+        )
+        website_list = self.db.command("text", "websites", search=search_query, limit=10)
+
+        #db.command("text", "players",
+        #search="alice",
+        #project={"name": 1, "_id": 0},
+        #limit=10)
+
+        return website_list
