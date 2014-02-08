@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from robly_dto.website import Website
+from robly_mongo.website_mongo import WebsiteMongo
 from robly_parser import parser
 import time
 from tldextract import tldextract
@@ -68,6 +69,16 @@ def merge_link_with_base_url(url, link):
     return merged_string
 
 
+def insert_websites_to_mongo(website_list):
+    """
+    Function to insert a list of website objects into mongodb
+    """
+    mongo = WebsiteMongo()
+    for w in website_list:
+        print("Inserting", w.url, "into mongodb")
+        mongo.create_website(w)
+
+
 def crawl_website_insert_to_database(url):
     """
     Function to crawl the given url and the pages it links to at a depth of 1.
@@ -88,9 +99,7 @@ def crawl_website_insert_to_database(url):
                     website_obj = get_website_object(w)
                     website_list.append(website_obj)
                 time.sleep(2)
-        return website_list
-    return []
-
+        insert_websites_to_mongo(website_list)
 
 def insert_base_url_before_relative_path_links(url, images):
     for n, image in enumerate(images):
