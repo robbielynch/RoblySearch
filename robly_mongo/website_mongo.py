@@ -13,6 +13,7 @@ class WebsiteMongo:
         """
         Inserts a website object into the mongoDB website collection
         """
+        #TODO if url already exists, then do an update.
         website_collection = self.db.websites
         website_id = website_collection.insert({"title": website.title, "url": website.url,
                                                 "description": website.description,
