@@ -8,6 +8,7 @@ class Website(object):
     links = []
     images = []
     non_html = ""
+    score = 0
 
     def __init__(self, url="", title="", h1s=[], links=[], images=[], non_html="",
                  description="", keywords=[], robots_index=True):
