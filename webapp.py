@@ -108,7 +108,7 @@ def create_new_user():
 @webapp.route('/search', methods=["POST"])
 def search():
     DEBUG_INFO = "[ROBLY] webapp.py - /search - "
-    logging.debug(DEBUG_INFO + "POST request = " + request.form)
+    #logging.debug(DEBUG_INFO + "POST request = " + request.form)
     query = request.form['search_box']
     logging.warning(DEBUG_INFO + "query = " + query)
     #Create query parser object with query string provided by user
@@ -119,8 +119,10 @@ def search():
     #query should now have been pruned of unnecessary words and characters
     #Get info from database
     mongo = WebsiteMongo()
-    results = mongo.search_websites(search_query, search_context)
-    return render_template('search_results.html', search_term=search_query)
+    websites, stats = mongo.search_websites(search_query, search_context)
+    #convert microseconds to seconds
+    seconds = stats.time_micros / 1000000
+    return render_template('search_results.html', search_results=websites, stats=stats, seconds=seconds)
 
 @webapp.route('/index_website', methods=["POST"])
 def index_website():
