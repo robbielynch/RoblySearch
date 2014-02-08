@@ -24,7 +24,7 @@ class QueryParser(object):
 
     def extract_context_and_search_query(self):
         """
-        Searches for, and extracts, context in search query.
+        Extracts search context and search query from the query.
         Search query then broken down into:
         - Context
         - Search Query
