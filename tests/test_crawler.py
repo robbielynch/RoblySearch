@@ -45,9 +45,9 @@ class TestRobCrawler(TestCase):
         self.assertEqual("test description", self.website.description)
 
     def test_crawl_website_insert_to_database(self):
-        url = "http://bkgs.ie"
-        website_objects = crawl_website_insert_to_database(url)
-        self.assertIsNotNone(website_objects)
+        url = "http://roblynch.info"
+        crawl_website_insert_to_database(url)
+        print("Complete")
 
     def test_merge_link_with_base_url(self):
         url = "http://roblynch.info/blog/awesomeness"

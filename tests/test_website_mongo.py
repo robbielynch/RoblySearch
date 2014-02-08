@@ -52,7 +52,7 @@ class TestWebsiteMongo(TestCase):
         #MongoDB server must be started with command "--setParameter textSearchEnabled=true"
         #in order for FTS to be enabled
         mongo = WebsiteMongo()
-        query = "germanium"
+        query = "git"
         results = mongo.search_websites(query)
         print("blah")
 
