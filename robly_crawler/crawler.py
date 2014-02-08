@@ -91,14 +91,15 @@ def crawl_website_insert_to_database(url):
         website_list = [website]
         if website.links:
             for w in website.links:
-                #Append base url to beginning of links beginning with /
-                if w.startswith('/'):
-                    w = merge_link_with_base_url(website.url, w)
-                #Crawl the valid links
-                if w != url and not '#' in w and not w.startswith('/') and w.startswith('http'):
-                    website_obj = get_website_object(w)
-                    website_list.append(website_obj)
-                time.sleep(2)
+                if w:
+                    #Append base url to beginning of links beginning with /
+                    if w.startswith('/'):
+                        w = merge_link_with_base_url(website.url, w)
+                    #Crawl the valid links
+                    if w != url and not '#' in w and not w.startswith('/') and w.startswith('http'):
+                        website_obj = get_website_object(w)
+                        website_list.append(website_obj)
+                    time.sleep(2)
         insert_websites_to_mongo(website_list)
 
 def insert_base_url_before_relative_path_links(url, images):
@@ -129,63 +130,66 @@ def get_website_object(url):
     except Exception:
         pass
 
-    if soup:
-        #title
-        try:
-            title = get_title(soup)
-        except Exception:
-            title = ""
-        #description
-        try:
-            description = get_description(soup)
-        except Exception:
-            description = ""
-        #keyword list
-        try:
-            keywords = get_keywords(soup)
-            keywords = list(set(keywords))
-        except Exception:
-            keywords = []
-        #robots follow
-        try:
-            robots_index = robots_should_index(soup)
-        except Exception:
-            robots_index = True
-        #links
-        try:
-            links = get_links(soup)
-            #Remove duplicates from list of links
-            links = list(set(links))
-        except Exception:
-            links = []
-        #h1s
-        try:
-            h1s = get_h1s(soup)
-            h1s = list(set(h1s))
-        except Exception:
-            h1s = []
-        #images
-        try:
-            images = get_images(soup)
-            #remove duplicates from images
-            images = list(set(images))
-            #make sure each image is a full url
-            images = insert_base_url_before_relative_path_links(url, images)
-        except Exception:
-            images = []
-        ## Get the text of the web page
-        try:
-            non_html = soup.get_text()
-            non_html = parser.prune_string(non_html)
-        except Exception:
-            non_html = ""
+    try:
+        if soup:
+            #title
+            try:
+                title = get_title(soup)
+            except Exception:
+                title = ""
+            #description
+            try:
+                description = get_description(soup)
+            except Exception:
+                description = ""
+            #keyword list
+            try:
+                keywords = get_keywords(soup)
+                keywords = list(set(keywords))
+            except Exception:
+                keywords = []
+            #robots follow
+            try:
+                robots_index = robots_should_index(soup)
+            except Exception:
+                robots_index = True
+            #links
+            try:
+                links = get_links(soup)
+                #Remove duplicates from list of links
+                links = list(set(links))
+            except Exception:
+                links = []
+            #h1s
+            try:
+                h1s = get_h1s(soup)
+                h1s = list(set(h1s))
+            except Exception:
+                h1s = []
+            #images
+            try:
+                images = get_images(soup)
+                #remove duplicates from images
+                images = list(set(images))
+                #make sure each image is a full url
+                images = insert_base_url_before_relative_path_links(url, images)
+            except Exception:
+                images = []
+            ## Get the text of the web page
+            try:
+                non_html = soup.get_text()
+                non_html = parser.prune_string(non_html)
+            except Exception:
+                non_html = ""
 
-        #Create website object
-        website = Website(url, title, h1s, links, images, non_html, description,
-                          keywords, robots_index)
-        return website
-    else:
-        return None
+            #Create website object
+            website = Website(url, title, h1s, links, images, non_html, description,
+                              keywords, robots_index)
+            return website
+        else:
+            return Website()
+    except Exception:
+        return Website()
 
 
 def get_title(soup):
