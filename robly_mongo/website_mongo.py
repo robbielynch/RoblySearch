@@ -27,6 +27,9 @@ class WebsiteMongo:
 
     def search_websites(self, search_query, context=""):
         #self.db.websites.ensureIndex( {type:"text"}, {unique: false, name: "type_index"})
+        #Uses Full Text Search
+        #MongoDB server must be started with command "--setParameter textSearchEnabled=true"
+        #in order for FTS to be enabled
         self.db.websites.create_index(
             [
                 ('title', 'text'),
