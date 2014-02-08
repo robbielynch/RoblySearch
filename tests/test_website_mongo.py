@@ -47,14 +47,15 @@ class TestWebsiteMongo(TestCase):
         successful = mongo.create_website(website)
         print("blah")
 
-    def test_read_website(self):
+    def test_search_website(self):
         #Uses Full Text Search
         #MongoDB server must be started with command "--setParameter textSearchEnabled=true"
         #in order for FTS to be enabled
         mongo = WebsiteMongo()
         query = "git"
-        results = mongo.search_websites(query)
-        print("blah")
+        websites_list, stats_obj = mongo.search_websites(query)
+        self.assertIsNotNone(websites_list)
+        self.assertIsNotNone(stats_obj)
 
     def tearDown(self):
         pass
