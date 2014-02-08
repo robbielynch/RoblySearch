@@ -8,10 +8,10 @@ from functools import wraps
 import logging
 
 from flask import Flask, request, session, url_for, redirect, render_template
-
 from robly_mongo.user_mongo import UserMongo
 from robly_crawler.crawler import get_website_object
 from robly_parser.parser import QueryParser
+from robly_mongo.website_mongo import WebsiteMongo
 
 
 
@@ -107,16 +107,19 @@ def create_new_user():
 
 @webapp.route('/search', methods=["POST"])
 def search():
-    logging.warning("in search")
-    logging.warning(request.form)
+    DEBUG_INFO = "[ROBLY] webapp.py - /search - "
+    logging.debug(DEBUG_INFO + "POST request = " + request.form)
     query = request.form['search_box']
-    logging.warning("query = " + query)
+    logging.warning(DEBUG_INFO + "query = " + query)
     #Create query parser object with query string provided by user
     query_parser = QueryParser(query)
     search_query, search_context = query_parser.extract_context_and_search_query()
-    print("Search Query=", search_query, "\nSearch Context=", search_context)
+    logging.debug(DEBUG_INFO + "SearchQuery = " + search_query)
+    logging.debug(DEBUG_INFO + "SearchContext = " + search_context)
     #query should now have been pruned of unnecessary words and characters
-    #TODO - Query database for results
+    #Get info from database
+    mongo = WebsiteMongo()
+    results = mongo.search_websites(search_query, search_context)
     return render_template('search_results.html', search_term=search_query)
 
 @webapp.route('/index_website', methods=["POST"])
