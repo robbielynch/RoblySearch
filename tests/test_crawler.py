@@ -45,9 +45,11 @@ class TestRobCrawler(TestCase):
         self.assertEqual("test description", self.website.description)
 
     def test_crawl_website_insert_to_database(self):
-        url = "http://roblynch.info"
-        crawl_website_insert_to_database(url)
-        print("Complete")
+        urls = ["http://play.google.com", "https://news.google.ie/"]
+        for url in urls:
+            crawl_website_insert_to_database(url)
+            print("Crawl complete on -", url)
+        print("done")
 
     def test_merge_link_with_base_url(self):
         url = "http://roblynch.info/blog/awesomeness"
