@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from robly_dto.stats import Statistics
+from robly_dto.website import Website
 
 
 class WebsiteMongo:
@@ -26,6 +28,13 @@ class WebsiteMongo:
             return False
 
     def search_websites(self, search_query, context=""):
+        """
+        Function to do a full text search on all indexed websites.
+        @param  search_query    - the query to use in the full text search
+        @param  context         - what to search for (sites, images, documents)
+        @return tuple           - containing (list_of_website_objects, statistics_object)
+        """
+        #TODO - return proper results that match context
         #self.db.websites.ensureIndex( {type:"text"}, {unique: false, name: "type_index"})
         #Uses Full Text Search
         #MongoDB server must be started with command "--setParameter textSearchEnabled=true"
@@ -42,11 +51,52 @@ class WebsiteMongo:
                 'non_html': 2
             }
         )
-        website_list = self.db.command("text", "websites", search=search_query, limit=10)
+        results_dict = self.db.command("text", "websites", search=search_query, limit=10)
 
         #db.command("text", "players",
         #search="alice",
         #project={"name": 1, "_id": 0},
         #limit=10)
 
-        return website_list
+        return self.convert_mongo_result_to_list_of_websites(results_dict)
+
+    def convert_mongo_result_to_list_of_websites(self, results_dict):
+        """
+        Function to convert mongo's result dictionary to a list of website objects
+        and a statistics object.
+        """
+        search_query_stats_dict = results_dict['stats']
+        results_list = results_dict['results']
+        website_list = []
+        for w in results_list:
+            score = w['score']
+            website = self.convert_dict_to_website_object(w['obj'])
+            website.score = score
+            website_list.append(website)
+        return website_list, self.covert_dict_to_statistics_object(search_query_stats_dict)
+
+    def convert_dict_to_website_object(self, website_dict):
+        """
+        Dictionary to Website object.
+        """
+        website = Website()
+        website.url = website_dict['url']
+        website.description = website_dict['description']
+        website.h1s = website_dict['h1s']
+        website.images = website_dict['images']
+        website.keywords = website_dict['keywords']
+        website.links = website_dict['links']
+        website.robots_index = website_dict['robots_index']
+        website.title = website_dict['title']
+        website.non_html = website_dict['non_html']
+        return website
+
+    def covert_dict_to_statistics_object(self, stats_dict):
+        """
+        Dictionary to Statistics object
+        """
+        stats = Statistics(stats_dict['n'], stats_dict['nfound'],
+                           stats_dict['nscanned'],
+                           stats_dict['nscannedObjects'],
+                           stats_dict['timeMicros'])
+        return stats
