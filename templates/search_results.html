@@ -1,29 +1,27 @@
 {% extends "base.html" %}
 
 {% block body %}
-    <div id="stats">
-        <p>About {{ stats.num_results }} ({{ seconds }} seconds)</p>
-    </div>
-    <div id="content">
-        <form id="search_form" action="/search" method="post">
-            <input name="search_box" id="search_box" type="text" />
-            <input name="search_button" id="search_button" type="submit" value="Search"/>
-            {% if logged_in %}
-            <button name="index_button" id="index_button" type="submit" value="Index" onclick="form.action='/index_website'">
-                Index
-            </button>
-            {% endif %}
-        </form>
-    </div>
-	<div id="search_result">
-        {% for w in search_results %}
-            {% if w.description != "" %}
-                <article>
-                    <a href="{{ w.url }}"><h4>{{ w.title }}</h4></a>
-                    <p>{{ w.description }}</p>
-                </article>
-            {% endif %}
-        {% endfor %}
-    </div>
+
+    {% include 'header.html' %}
+        <div class="content-head">
+            <div class="pure-g-r grid-example">
+                <div class="pure-u-1-1">
+                    <div class="l-box">
+                        <p>About {{ stats.num_results }} ({{ seconds }} seconds)</p>
+                    </div>
+                </div>
+                {% for w in search_results %}
+                    {% if w.description != "" %}
+                        <div class="pure-u-1-1">
+                            <div class="l-box">
+                                <a href="{{ w.url }}"><h3>{{ w.title }}</h3></a>
+                                <p>{{ w.description }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% include 'footer.html' %}
 
 {% endblock %}
