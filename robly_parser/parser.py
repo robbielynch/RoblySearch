@@ -1,6 +1,6 @@
 import re
 from stemming.porter2 import stem
-from data import stop_words
+from robly_data import stop_words
 
 
 class QueryParser(object):
