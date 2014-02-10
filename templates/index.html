@@ -1,12 +1,26 @@
 {% extends "base.html" %}
 
-{% block body %}
+    {% block body %}
 
-<div id="search">
-	<form action="/search" method="POST">
-		<input type="text" value="Robbie is awesome..." accept-charset="utf-8">
-		<input type="submit" value="Search" accept-charset="utf-8">
-	</form>
-</div>
-	
-{% endblock %}
+        {% include 'header.html' %}
+
+        {% include 'search_form.html' %}
+
+        {% if logged_in == False %}
+            {% include 'login_and_signup.html' %}
+        {% endif %}
+
+        {% include 'footer.html' %}
+
+        <script src="http://yui.yahooapis.com/3.14.1/build/yui/yui.js"></script>
+        <script>
+        YUI().use('node-base', 'node-event-delegate', function (Y) {
+            // This just makes sure that the href="#" attached to the <a> elements
+            // don't scroll you back up the page.
+            Y.one('body').delegate('click', function (e) {
+                e.preventDefault();
+            }, 'a[href="#"]');
+        });
+        </script>
+
+    {% endblock %}

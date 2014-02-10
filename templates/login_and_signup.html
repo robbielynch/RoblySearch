@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+
+    <div id="loginrobly" class="ribbon l-box-lrg pure-g">
+{#        <div class="l-box-lrg is-center pure-u-1 pure-u-med-1-2 pure-u-lrg-2-5">#}
+{#            <img class="pure-img-responsive" alt="File Icons" width="300" src="/static/img/common/file-icons.png">#}
+{#        </div>#}
+        <div class="pure-u-1 pure-u-med-1-2 pure-u-lrg-3-5">
+
+            <h2 class="content-head content-head-ribbon">Login.</h2>
+
+            <form class="pure-form pure-form-stacked" action="/login" method="POST" accept-charset="utf-8">
+                    <fieldset>
+                        <label for="email">Your Email</label>
+                        <input id="email" name="email" type="email" placeholder="Your Email">
+
+                        <label for="password">Your Password</label>
+                        <input id="password" name="password" type="password" placeholder="Your Password">
+
+                        <button type="submit" class="pure-button">Login</button>
+                    </fieldset>
+                </form>
+        </div>
+    </div>
+
+    <div id="signuptorobly" class="content">
+        <h2 class="content-head is-center">RoblySearch.</h2>
+
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-med-2-5">
+                <form class="pure-form pure-form-stacked" action="/create_new_user" method="POST" accept-charset="utf-8">
+                    <fieldset>
+
+                        <label for="email">Your Name</label>
+                        <input id="name" name="name" type="text" placeholder="Your Name">
+
+
+                        <label for="email">Your Email</label>
+                        <input id="email" name="email" type="email" placeholder="Your Email">
+
+                        <label for="password">Your Password</label>
+                        <input id="password" name="password" type="password" placeholder="Your Password">
+
+                        <button type="submit" class="pure-button">Sign Up</button>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="l-box-lrg pure-u-1 pure-u-med-3-5">
+                <h4>Contact Us</h4>
+                <p>
+                    Feel free to contact us with any queries.<br />
+                    <b>robbie.lynch@outlook.com</b>
+                </p>
+
+                <h4>More Information</h4>
+                <p>
+                    RoblySearch is completely free and open-source. Which means you can download, fork or contribute to
+                    the development of RoblySearch.<br />
+                    Head to <a href="http://github.com/robbielynch/RoblySearch">Github</a> to find out more.
+                </p>
+            </div>
+        </div>
+
+    </div>

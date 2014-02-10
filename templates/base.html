@@ -14,32 +14,22 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+{#        pure css#}
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.1/pure.css">
+        <link rel="stylesheet" href="/static/css/main-grid.css">
+        <link rel="stylesheet" href="/static/css/layouts/marketing.css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.0.3.min.js"><\/script>')</script>
     </head>
-    <body>
+    <body link="#CCCCCC" vlink="#AAAAAA" alink="#FF0000">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-            <div id="container">
-
-            <div id="header" align="right" style="background-color:#FFA500;">
-            Login
-            </div>
-
-            <div id="content" style="background-color:#EEEEEE;float:left;">
             
                 {% block body %}
 
                 {% endblock %}
-
-            </div>
-
-            <div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
-            Robbie Lynch - C00151101 - Institute of Technology, Carlow.</div>
-
-            </div>
-
     </body>
 </html>

@@ -42,13 +42,19 @@ def root():
         logged_in = True
     else:
         logged_in = False
-    return render_template('home.html', title=APP_NAME, logged_in=logged_in, stylesheet='main.css')
+    return render_template('index.html', title=APP_NAME, logged_in=logged_in)
 
 
 @webapp.route('/index')
 @check_loggied_in
 def index():
-    return render_template('home.html', title=APP_NAME, stylesheet='main.css')
+    if 'logged-in' in session:
+        logged_in = True
+        return render_template('index.html', title=APP_NAME, logged_in=logged_in, name=session['username'])
+    else:
+        logged_in = False
+        return render_template('index.html', title=APP_NAME, logged_in=logged_in)
+
 
 
 @webapp.route('/signup')
@@ -56,7 +62,7 @@ def signup():
     """
     Displays the signup form for potential new users.
     """
-    return render_template('signup.html', title="Sign Up", stylesheet="main.css")
+    return render_template('index.html')
 
 
 @webapp.route('/login', methods=["GET", "POST"])
@@ -65,7 +71,11 @@ def login():
     Displays the login form for potential new users.
     """
     if request.method == "GET":
-        return render_template('login.html', title="Login", stylesheet="main.css")
+        if 'logged-in' in session:
+            return render_template('/index.html', logged_in=True)
+        else:
+            return render_template('/index.html', logged_in=False)
+
     else:
         mongo = UserMongo()
         email = request.form['email']
@@ -75,7 +85,7 @@ def login():
             session['logged-in'] = True
             session['username'] = user.__getitem__("name")
             session['useremail'] = user.__getitem__("email")
-            return redirect(url_for('/'))
+            return redirect(url_for('index'))
         else:
             return "User not found"
 

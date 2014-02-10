@@ -1,0 +1,16 @@
+<div id="toprobly" class="header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">RoblySearch</a>
+
+        <ul>
+            <li class="pure-menu-selected"><a href="#toprobly">Home</a></li>
+            {% if logged_in == False %}
+            <li><a href="#loginrobly">Login</a></li>
+            <li><a href="#signuptorobly">Sign Up</a></li>
+            {% else %}
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="#">{{ name }}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
