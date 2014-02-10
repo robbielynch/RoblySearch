@@ -83,7 +83,7 @@ def crawl_website_insert_to_database(url):
     """
     Function to crawl the given url and the pages it links to at a depth of 1.
     Params:     string - the url of the website that is to be crawled
-    Returns:    List - of website objects containing each of the crawled websites data
+    Returns:    List - of website objects containing each of the crawled websites robly_data
     """
     website = get_website_object(url)
     print("Number of website that will be crawled =", len(website.links))
@@ -116,7 +116,7 @@ def get_website_object(url):
     This function parses the url, creates a website object for easy access
     to all html elements that are to be stored in the database.
     Params : url        The url of the website to be parsed
-    Return : website    Website object containing all websites data
+    Return : website    Website object containing all websites robly_data
     """
     print("crawling - ", url)
     #get html
