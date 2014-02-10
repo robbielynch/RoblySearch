@@ -1,9 +1,3 @@
-"""
-Name 			: Robbie Lynch
-
-Student Number 	: C00151101
-
-"""
 from functools import wraps
 import logging
 
