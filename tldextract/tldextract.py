@@ -158,7 +158,7 @@ class TLDExtract(object):
 
         Local files can be specified by using the `file://` protocol. (See `urllib2` documentation.)
 
-        If there is no `cache_file` loaded and no robly_data is found from the `suffix_list_url`,
+        If there is no `cache_file` loaded and no data is found from the `suffix_list_url`,
         the module will fall back to the included TLD set snapshot. If you do not want
         this behavior, you may set `fallback_to_snapshot` to False, and an exception will be
         raised instead.
@@ -181,7 +181,7 @@ class TLDExtract(object):
         self.fallback_to_snapshot = fallback_to_snapshot
         if not (self.suffix_list_urls or self.cache_file or self.fallback_to_snapshot):
             raise ValueError("The arguments you have provided disable all ways for tldextract "
-                             "to obtain robly_data. Please provide a suffix list robly_data, a cache_file, "
+                             "to obtain data. Please provide a suffix list data, a cache_file, "
                              "or set `fallback_to_snapshot` to `True`.")
         self._extractor = None
 
