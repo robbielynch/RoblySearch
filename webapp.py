@@ -1,11 +1,13 @@
 from functools import wraps
 import logging
+import random
 
 from flask import Flask, request, session, url_for, redirect, render_template
 from robly_mongo.user_mongo import UserMongo
 from robly_crawler.crawler import get_website_object
 from robly_parser.parser import QueryParser
 from robly_mongo.website_mongo import WebsiteMongo
+from robly_data.random_search_placeholder import search_placeholders
 
 
 
@@ -36,7 +38,8 @@ def root():
         logged_in = True
     else:
         logged_in = False
-    return render_template('index.html', title=APP_NAME, logged_in=logged_in)
+    return render_template('index.html', title=APP_NAME, logged_in=logged_in,
+                           rand_search=random.choice(search_placeholders))
 
 
 @webapp.route('/index')
@@ -44,10 +47,12 @@ def root():
 def index():
     if 'logged-in' in session:
         logged_in = True
-        return render_template('index.html', title=APP_NAME, logged_in=logged_in, name=session['username'])
+        return render_template('index.html', title=APP_NAME, logged_in=logged_in, name=session['username'],
+                               rand_search=random.choice(search_placeholders))
     else:
         logged_in = False
-        return render_template('index.html', title=APP_NAME, logged_in=logged_in)
+        return render_template('index.html', title=APP_NAME, logged_in=logged_in,
+                               rand_search=random.choice(search_placeholders))
 
 
 
@@ -56,7 +61,7 @@ def signup():
     """
     Displays the signup form for potential new users.
     """
-    return render_template('index.html')
+    return render_template('index.html', rand_search=random.choice(search_placeholders))
 
 
 @webapp.route('/login', methods=["GET", "POST"])
@@ -66,9 +71,11 @@ def login():
     """
     if request.method == "GET":
         if 'logged-in' in session:
-            return render_template('/index.html', logged_in=True)
+            return render_template('/index.html', logged_in=True,
+                                   rand_search=random.choice(search_placeholders))
         else:
-            return render_template('/index.html', logged_in=False)
+            return render_template('/index.html', logged_in=False,
+                                   rand_search=random.choice(search_placeholders))
 
     else:
         mongo = UserMongo()
@@ -140,7 +147,7 @@ def index_website():
 
 def is_empty(any_structure):
     """
-    Simple helper function to help determine if a data
+    Simple helper function to help determine if a robly_data
     structure is empty.
     Parameters:
         Object - Any object
