@@ -7,7 +7,7 @@
     
     <!-- search form -->
         <form class="pure-form" id="search_form" action="/search" method="post">
-            <input name="search_box" id="search_box" type="text" placeholder="{{ rand_search }}"/><br />
+            <input name="search_box" id="search_box" type="text" required="true" placeholder="{{ rand_search }}"/><br />
             <input name="search_button" class="pure-button pure-button-primary"
                    id="search_button" type="submit" value="Search"/>
             {% if logged_in %}
@@ -17,6 +17,9 @@
             </button>
             {% endif %}
         </form>
+    {% if index_message %}
+        <p>{{ index_message }}</p>
+    {% endif %}
         <!-- end search form -->
     </div>
 </div>
