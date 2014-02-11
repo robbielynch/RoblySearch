@@ -14,16 +14,27 @@ class WebsiteMongo:
         """
         Inserts a website object into the mongoDB website collection
         """
-        #TODO if url already exists, then do an update.
         website_collection = self.db[WEBSITE_COLLECTION]
-        website_id = website_collection.insert({"title": website.title, "url": website.url,
-                                                "description": website.description,
-                                                "keywords": website.keywords,
-                                                "robots_index": website.robots_index,
-                                                "h1s": website.h1s,
-                                                "links": website.links,
-                                                "images": website.images,
-                                                "non_html": website.non_html})
+
+        website_id = website_collection.update({
+                                                    #Query
+                                                    "url": website.url
+                                               },
+                                                {
+                                                    #Field Data to insert/update
+                                                    "title": website.title, "url": website.url,
+                                                    "description": website.description,
+                                                    "keywords": website.keywords,
+                                                    "robots_index": website.robots_index,
+                                                    "h1s": website.h1s,
+                                                    "links": website.links,
+                                                    "images": website.images,
+                                                    "non_html": website.non_html
+                                                },
+                                                ##Set Upsert to True##
+                                                #Insert if it doesn't exist
+                                                #Update if it already exists
+                                                True)
         if website_id:
             return True
         else:
