@@ -44,6 +44,16 @@ def get_protocol(url):
         protocol = "http://"
     return protocol
 
+def get_protocol_without_slashes(url):
+    """
+    Returns whether the url is https or http and returns the protocol as a string
+    """
+    if url.startswith('https'):
+        protocol = "https:"
+    else:
+        protocol = "http:"
+    return protocol
+
 
 def merge_link_with_base_url(url, link):
     """
@@ -93,11 +103,13 @@ def crawl_website_insert_to_database(url):
         if website.links:
             for w in website.links:
                 if w:
+                    if w.startswith('//'):
+                        w = get_protocol_without_slashes(w) + w
                     #Append base url to beginning of links beginning with /
                     if w.startswith('/'):
                         w = merge_link_with_base_url(website.url, w)
                     #Crawl the valid links
-                    if w != url and not '#' in w and not w.startswith('/') and w.startswith('http'):
+                    if w != url and is_valid_url(w):
                         website_obj = get_website_object(w)
                         website_list.append(website_obj)
                     time.sleep(2)
@@ -110,7 +122,16 @@ def insert_base_url_before_relative_path_links(url, images):
             images[n] = merge_link_with_base_url(url, image)
     return images
 
-
+def is_valid_url(url):
+    import re
+    regex = re.compile(
+        r'^https?://'  # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # domain...
+        r'localhost|'  # localhost...
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})' # ...or ip
+        r'(?::\d+)?'  # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    return url is not None and regex.search(url)
 
 def get_website_object(url):
     """

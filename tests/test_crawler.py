@@ -1,5 +1,6 @@
 from unittest import TestCase
 from robly_crawler.crawler import get_website_object, crawl_website_insert_to_database, merge_link_with_base_url
+import threading
 
 __author__ = 'robbie'
 
@@ -57,3 +58,21 @@ class TestRobCrawler(TestCase):
         expected = "http://roblynch.info/static/imgs/logo.png"
         merged_string = merge_link_with_base_url(url, link)
         self.assertEqual(expected, merged_string)
+
+
+    def test_crawl_these_major_sites(self):
+        urls =  [
+                    "http://play.google.com", "https://news.google.ie/",
+                    "http://facebook.com", "http://amazon.com",
+                    "http://bookdepository.com", "http://mongohq.com",
+                    "http://roblynch.info", "http://ierlang.org", "http://erlang.org",
+                    "http://python.org", "http://github.com", "http://bitbucket.org",
+                    "http://hackerrank.com", "http://stackoverflow.com", "http://yahoo.com",
+                    "http://google.com", "http://bing.com", "http://microsoft.com",
+                    "http://aol.ie", "http://wikipedia.com"
+                ]
+        for url in urls:
+            t1 = threading.Thread(target=crawl_website_insert_to_database, args=(url,))
+            t1.start()
+            print("Crawling -", url)
+        print("done")

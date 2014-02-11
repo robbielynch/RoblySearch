@@ -13,6 +13,7 @@ class WebsiteMongo:
     def __init__(self):
         self.client = MongoClient(HOST, PORT)
         self.db = self.client[DB_NAME]
+        logging.warning(self.DEBUG_INFO + "HOST={}\nPORT={}\nDB_NAME={}".format(HOST,PORT,DB_NAME))
 
     def create_website(self, website):
         """
