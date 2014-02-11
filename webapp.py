@@ -142,8 +142,9 @@ def search():
             #convert microseconds to seconds
             seconds = stats.time_micros / 1000000
             return render_template('search_results.html', search_results=websites, stats=stats, seconds=seconds)
-        except:
-            logging.error(DEBUG_INFO + "Error searching mongodb with the searchquery '{}'".format(search_query))
+        except Exception as e:
+            logging.error(DEBUG_INFO + "Error searching mongodb with the searchquery '{} - {}'".format(search_query,
+                                                                                                       str(e)))
             return redirect(url_for('index'))
     else:
         return redirect(url_for('index'))

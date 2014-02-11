@@ -1,11 +1,15 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import logging
+import inspect
 from robly_dto.stats import Statistics
 from robly_dto.website import Website
 from robly_mongo.mongodb_config import DB_NAME, WEBSITE_COLLECTION, HOST, PORT
 
 
 class WebsiteMongo:
+    DEBUG_INFO = "[Robly] WebsiteMongo - "
+
     def __init__(self):
         self.client = MongoClient(HOST, PORT)
         self.db = self.client[DB_NAME]
@@ -52,26 +56,37 @@ class WebsiteMongo:
         #Uses Full Text Search
         #MongoDB server must be started with command "--setParameter textSearchEnabled=true"
         #in order for FTS to be enabled
-        self.db.websites.create_index(
-            [
-                ('title', 'text'),
-                ('non_html', 'text'),
-                ('description', 'text')
-            ],
-            weights={
-                'title': 10,
-                'description': 5,
-                'non_html': 2
-            }
-        )
-        results_dict = self.db.command("text", "websites", search=search_query, limit=10)
+        try:
+            self.db.websites.create_index(
+                [
+                    ('title', 'text'),
+                    ('url', 'text'),
+                    ('description', 'text')
+                ],
+                weights={
+                    'title': 5,
+                    'url': 4,
+                    'description': 3,
+                }
+            )
 
-        #db.command("text", "players",
-        #search="alice",
-        #project={"name": 1, "_id": 0},
-        #limit=10)
+            #Search
+            results_dict = self.db.command("text",
+                                           "websites",
+                                            search=search_query,
+                                            #projection={
+                                            #    'non_html': False
+                                            #},
+                                            limit=100)
 
-        return self.convert_mongo_result_to_list_of_websites(results_dict)
+            #db.command("text", "players",
+            #search="alice",
+            #project={"name": 1, "_id": 0},
+            #limit=10)
+
+            return self.convert_mongo_result_to_list_of_websites(results_dict)
+        except Exception as e:
+            logging.error(self.DEBUG_INFO + inspect.stack()[0][3] + " - ERROR searching database - " + str(e))
 
     def convert_mongo_result_to_list_of_websites(self, results_dict):
         """

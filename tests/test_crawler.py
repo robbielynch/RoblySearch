@@ -13,7 +13,7 @@ class TestRobCrawler(TestCase):
     website = ""
 
     def setUp(self):
-        self.website_url = "http://ierlang.org/t3m60rary111.html"
+        self.website_url = "http://roblynch.info/about"
         self.website = get_website_object(self.website_url)
 
     def test_title_correct(self):

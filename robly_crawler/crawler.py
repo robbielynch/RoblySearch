@@ -4,6 +4,7 @@ from robly_dto.website import Website
 from robly_mongo.website_mongo import WebsiteMongo
 from robly_parser import parser
 import time
+import logging
 from tldextract import tldextract
 
 
@@ -122,12 +123,15 @@ def get_website_object(url):
     #get html
     try:
         html = get_html(url)
-    except Exception:
+    except Exception as e:
+        logging.error("[ROBLY] crawler.py - could not retrieve html from {}"
+                      "\nError message: {}".format(url, str(e)))
         pass
     #parse website info
     try:
         soup = BeautifulSoup(html)
     except Exception:
+        logging.error("[ROBLY] crawler.py - could not soupify html")
         pass
 
     try:
@@ -136,22 +140,26 @@ def get_website_object(url):
             try:
                 title = get_title(soup)
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse title")
                 title = ""
             #description
             try:
                 description = get_description(soup)
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse description")
                 description = ""
             #keyword list
             try:
                 keywords = get_keywords(soup)
                 keywords = list(set(keywords))
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse keywords")
                 keywords = []
             #robots follow
             try:
                 robots_index = robots_should_index(soup)
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse robots")
                 robots_index = True
             #links
             try:
@@ -159,12 +167,14 @@ def get_website_object(url):
                 #Remove duplicates from list of links
                 links = list(set(links))
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse links")
                 links = []
             #h1s
             try:
                 h1s = get_h1s(soup)
                 h1s = list(set(h1s))
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse h1s")
                 h1s = []
             #images
             try:
@@ -174,12 +184,14 @@ def get_website_object(url):
                 #make sure each image is a full url
                 images = insert_base_url_before_relative_path_links(url, images)
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse images")
                 images = []
             ## Get the text of the web page
             try:
                 non_html = soup.get_text()
                 non_html = parser.prune_string(non_html)
             except Exception:
+                logging.warning("[ROBLY] crawler.py - could not parse non_html")
                 non_html = ""
 
             #Create website object
@@ -188,7 +200,8 @@ def get_website_object(url):
             return website
         else:
             return Website()
-    except Exception:
+    except Exception as e:
+        logging.error("[ROBLY] crawler.py - error parsing website - " + str(e))
         return Website()
 
 

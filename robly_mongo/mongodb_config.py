@@ -30,3 +30,11 @@ WEBSITE_COLLECTION = "websites"
 USER_COLLECTION = "users"
 
 
+#MongoHQ
+#DB_NAME = "robbiesearch"
+#PORT = 10080
+#HOST = 'mongodb://robly:robly@alex.mongohq.com:' + str(PORT) + '/' + DB_NAME
+#WEBSITE_COLLECTION = "websites"
+#USER_COLLECTION = "users"
+
+
