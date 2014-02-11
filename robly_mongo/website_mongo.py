@@ -2,19 +2,20 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from robly_dto.stats import Statistics
 from robly_dto.website import Website
+from robly_mongo.mongodb_config import DB_NAME, WEBSITE_COLLECTION, HOST, PORT
 
 
 class WebsiteMongo:
     def __init__(self):
-        self.client = MongoClient()
-        self.db = self.client.test
+        self.client = MongoClient(HOST, PORT)
+        self.db = self.client[DB_NAME]
 
     def create_website(self, website):
         """
         Inserts a website object into the mongoDB website collection
         """
         #TODO if url already exists, then do an update.
-        website_collection = self.db.websites
+        website_collection = self.db[WEBSITE_COLLECTION]
         website_id = website_collection.insert({"title": website.title, "url": website.url,
                                                 "description": website.description,
                                                 "keywords": website.keywords,
