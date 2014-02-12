@@ -16,6 +16,7 @@ class TestRobCrawler(TestCase):
     def setUp(self):
         self.website_url = "http://roblynch.info/about"
         self.website = get_website_object(self.website_url)
+        print("done")
 
     def test_title_correct(self):
         self.assertEqual("Test Title", self.website.title)

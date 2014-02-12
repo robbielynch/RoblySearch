@@ -2,23 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 from robly_dto.website import Website
 from robly_mongo.website_mongo import WebsiteMongo
-from robly_parser import parser
 import time
 import logging
 from tldextract import tldextract
+from roblyparser.robly_parser import RoblyParser
+from roblyparser.html_object import HTMLObject
 
-
-def get_html(url):
-    """
-    Function to return the HTML content of a url
-    """
-    headers = {'Accept':'text/css,*/*;q=0.1',
-        'Accept-Charset':'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-        'Accept-Encoding':'gzip,deflate,sdch',
-        'Accept-Language':'en-US,en;q=0.8',
-        'User-Agent':'Mozilla/5 (Windows 7) Gecko'}
-    res = requests.get(url, headers=headers)
-    return str(BeautifulSoup(res.content))
 
 
 def get_base_url(url):
@@ -135,93 +124,22 @@ def is_valid_url(url):
 
 def get_website_object(url):
     """
-    This function parses the url, creates a website object for easy access
+    This function uses the custom built parser (roblyparser) to parse the url,
+    creates a website object for easy access
     to all html elements that are to be stored in the database.
     Params : url        The url of the website to be parsed
     Return : website    Website object containing all websites robly_data
     """
-    print("crawling - ", url)
-    #get html
     try:
-        html = get_html(url)
-    except Exception as e:
-        logging.error("[ROBLY] crawler.py - could not retrieve html from {}"
-                      "\nError message: {}".format(url, str(e)))
-        pass
-    #parse website info
-    try:
-        soup = BeautifulSoup(html)
-    except Exception:
-        logging.error("[ROBLY] crawler.py - could not soupify html")
-        pass
+        parser = RoblyParser()
+        html_object = parser.get_webpage_as_object(url)
 
-    try:
-        if soup:
-            #title
-            try:
-                title = get_title(soup)
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse title")
-                title = ""
-            #description
-            try:
-                description = get_description(soup)
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse description")
-                description = ""
-            #keyword list
-            try:
-                keywords = get_keywords(soup)
-                keywords = list(set(keywords))
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse keywords")
-                keywords = []
-            #robots follow
-            try:
-                robots_index = robots_should_index(soup)
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse robots")
-                robots_index = True
-            #links
-            try:
-                links = get_links(soup)
-                #Remove duplicates from list of links
-                links = list(set(links))
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse links")
-                links = []
-            #h1s
-            try:
-                h1s = get_h1s(soup)
-                h1s = list(set(h1s))
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse h1s")
-                h1s = []
-            #images
-            try:
-                images = get_images(soup)
-                #remove duplicates from images
-                images = list(set(images))
-                #make sure each image is a full url
-                images = insert_base_url_before_relative_path_links(url, images)
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse images")
-                images = []
-            ## Get the text of the web page
-            try:
-                non_html = soup.get_text()
-                non_html = parser.prune_string(non_html)
-            except Exception:
-                logging.warning("[ROBLY] crawler.py - could not parse non_html")
-                non_html = ""
-
-            #Create website object
-            website = Website(url, title, h1s, links, images, non_html, description,
-                              keywords, robots_index)
-            return website
-        else:
-            return Website()
+        website = Website(html_object.url, html_object.title, html_object.h1s, html_object.links,
+                          html_object.images, html_object.body, html_object.description,
+                          html_object.keywords, html_object.robots_index)
+        return website
     except Exception as e:
+        print(str(e))
         logging.error("[ROBLY] crawler.py - error parsing website - " + str(e))
         return Website()
 
