@@ -131,77 +131,15 @@ def get_website_object(url):
     Return : website    Website object containing all websites robly_data
     """
     try:
+        print("[Robly] Parsing {}".format(url))
         parser = RoblyParser()
         html_object = parser.get_webpage_as_object(url)
 
-        website = Website(html_object.url, html_object.title, html_object.h1s, html_object.links,
-                          html_object.images, html_object.body, html_object.description,
-                          html_object.keywords, html_object.robots_index)
+        website = Website(html_object.url, html_object.title, list(set(html_object.h1s)), list(set(html_object.links)),
+                          list(set(html_object.images)), html_object.body, html_object.description,
+                          list(set(html_object.keywords)), html_object.robots_index)
         return website
     except Exception as e:
         print(str(e))
         logging.error("[ROBLY] crawler.py - error parsing website - " + str(e))
         return Website()
-
-
-def get_title(soup):
-    """
-    Returns the title of the web page
-    """
-    return soup.title.string
-
-
-def get_images(soup):
-    """
-    Returns: A list of URL for images found on the page
-    """
-    images = []
-    for pic in soup.find_all('img'):
-        images.append(pic.get('src'))
-    return images
-
-
-def get_links(soup):
-    """
-    Returns:    A list of url links found on the page.
-    """
-    links = []
-    for link in soup.find_all('a'):
-        links.append(link.get('href'))
-    return links
-
-
-def get_h1s(soup):
-    """
-    Returns:    A list of header 1 tags found on the web page
-    """
-    h1s = []
-    for h1 in soup.find_all('h1'):
-        h1s.append(h1.string)
-    return h1s
-
-
-def get_keywords(soup):
-    """
-    Returns:    A list of keywords found in the meta tags of the webpage
-    """
-    keyword_string = soup.find("meta", {"name": "keywords"})['content']
-    return keyword_string.split(',')
-
-
-def get_description(soup):
-    """
-    Returns:    A string description of the website found in the meta tags in the website
-    """
-    return soup.find("meta", {"name": "description"})['content']
-
-
-def robots_should_index(soup):
-    """
-    Returns:    True if the web page wants to be indexed
-                False if the web page does not want to be indexed
-    """
-    if "noindex" in soup.find("meta", {"name": "robots"})['content']:
-        return False
-    else:
-        return True

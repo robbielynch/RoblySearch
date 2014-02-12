@@ -14,8 +14,8 @@ class TestRobCrawler(TestCase):
     website = ""
 
     def setUp(self):
-        self.website_url = "http://roblynch.info/about"
-        self.website = get_website_object(self.website_url)
+        #self.website_url = "http://roblynch.info/about"
+        #self.website = get_website_object(self.website_url)
         print("done")
 
     def test_title_correct(self):
@@ -47,7 +47,7 @@ class TestRobCrawler(TestCase):
         self.assertEqual("test description", self.website.description)
 
     def test_crawl_website_insert_to_database(self):
-        urls = ["http://play.google.com", "https://news.google.ie/"]
+        urls = ["http://roblynch.info/about"]
         for url in urls:
             crawl_website_insert_to_database(url)
             print("Crawl complete on -", url)
