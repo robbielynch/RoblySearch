@@ -10,6 +10,8 @@ from robly_parser.parser import QueryParser
 from robly_mongo.website_mongo import WebsiteMongo
 from robly_data.random_search_placeholder import search_placeholders
 from robly_crawler import crawler
+from robly_dto.website import Website
+from duckduckgo.duckduckgo import query, Results, Result
 
 
 
@@ -118,6 +120,25 @@ def create_new_user():
     else:
         return "User not created"
 
+
+def get_websites_from_duckduckgo(search_query):
+    """
+    Called when no search results are found locally.
+    Returns related results from DuckDuckGo's API
+    """
+    websites = []
+    response = query(search_query,useragent='RoblySearch')
+    related = response.related
+    for r in related:
+        try:
+            w = Website(r.url,r.text,h1s=[],links=[],images=[],non_html=[],description=r.text,
+                        keywords=[],robots_index=True)
+            websites.append(w)
+        except:
+            pass
+    return websites
+
+
 @webapp.route('/search', methods=["POST"])
 def search():
     DEBUG_INFO = "[ROBLY] webapp.py - /search - "
@@ -141,6 +162,9 @@ def search():
             websites, stats = mongo.search_websites(search_query, search_context)
             #convert microseconds to seconds
             seconds = stats.time_micros / 1000000
+            #Use duckduckgo api if no results found
+            if len(websites) < 1:
+                websites = get_websites_from_duckduckgo(search_query)
             return render_template('search_results.html', search_results=websites, stats=stats, seconds=seconds)
         except Exception as e:
             logging.error(DEBUG_INFO + "Error searching mongodb with the searchquery '{} - {}'".format(search_query,
@@ -163,19 +187,19 @@ def index_website():
         t1.start()
         #Return the user to the index page while the thread is executing.
         return render_template('/index.html', logged_in=is_logged_in(),
-                                   rand_search=random.choice(search_placeholders),
-                                   index_message="'{} is being indexed and will be available to search in a few minutes.'".format(url))
+                                rand_search=random.choice(search_placeholders),
+                                index_message="'{} is being indexed and will be available to search in a few minutes.'".format(url))
     else:
         logging.error(DEBUG_INFO + "'{}' is not a valid url")
         return render_template('/index.html', logged_in=is_logged_in(),
-                                   rand_search=random.choice(search_placeholders),
-                                   index_message="Could not index the URL provided - {}".format(url))
+                                rand_search=random.choice(search_placeholders),
+                                index_message="Could not index the URL provided - {}".format(url))
 
 @webapp.route('/error_indexing', methods=['GET'])
 def error_indexing():
     return render_template('/index.html', logged_in=is_logged_in(),
-                                   rand_search=random.choice(search_placeholders),
-                                   index_message="Could not index the URL provided")
+                            rand_search=random.choice(search_placeholders),
+                            index_message="Could not index the URL provided")
 
 
 def is_valid_url(url):
