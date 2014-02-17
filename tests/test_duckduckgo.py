@@ -20,7 +20,7 @@ class TestDDG(TestCase):
             string += r.url + "\n"
             string += r.text + "\n"
             string += '\n----------------\n'
-        print("done")
+        self.assertNotEquals("", string)
 
 
 

@@ -14,12 +14,12 @@ class TestRobCrawler(TestCase):
     website = ""
 
     def setUp(self):
-        #self.website_url = "http://roblynch.info/about"
-        #self.website = get_website_object(self.website_url)
+        self.website_url = "http://roblynch.info/about"
+        self.website = get_website_object(self.website_url)
         print("done")
 
     def test_title_correct(self):
-        self.assertEqual("Test Title", self.website.title)
+        self.assertEqual("about | robbie's awesome blog", self.website.title)
 
     def test_h1s_correct(self):
         self.assertEqual(2, len(self.website.h1s))
@@ -28,13 +28,13 @@ class TestRobCrawler(TestCase):
         self.assertEqual(self.website_url, self.website.url)
 
     def test_keywords_correct(self):
-        self.assertEqual(4, len(self.website.keywords))
+        self.assertEqual(2, len(self.website.keywords))
 
     def test_robots_correct(self):
         self.assertTrue(self.website.robots_index)
 
     def test_images_correct(self):
-        self.assertEqual(1, len(self.website.images))
+        self.assertEqual(3, len(self.website.images))
 
     def test_nonhtml_correct(self):
         print(self.website.non_html)
@@ -54,9 +54,9 @@ class TestRobCrawler(TestCase):
         print("done")
 
     def test_merge_link_with_base_url(self):
-        url = "http://roblynch.info/blog/awesomeness"
+        url = "http://github.com/robbielynch"
         link = "/static/imgs/logo.png"
-        expected = "http://roblynch.info/static/imgs/logo.png"
+        expected = "http://github.com/robbielynch/static/imgs/logo.png"
         merged_string = merge_link_with_base_url(url, link)
         self.assertEqual(expected, merged_string)
 
