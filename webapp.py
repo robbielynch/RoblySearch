@@ -165,6 +165,13 @@ def search():
             #Use duckduckgo api if no results found
             if len(websites) < 1:
                 websites = get_websites_from_duckduckgo(search_query)
+            else:
+                #Add page rank to full text search score
+                for w in websites:
+                    w.score += w.pagerank
+                #Sort list of websites by score
+                from operator import attrgetter
+                websites.sort(key=attrgetter('score'), reverse=False)
             return render_template('search_results.html', search_results=websites, stats=stats, seconds=seconds)
         except Exception as e:
             logging.error(DEBUG_INFO + "Error searching mongodb with the searchquery '{} - {}'".format(search_query,

@@ -6,6 +6,7 @@ import time
 import logging
 from tldextract import tldextract
 from roblyparser.robly_parser import RoblyParser
+from google.page_rank import get_page_rank
 from roblyparser.html_object import HTMLObject
 
 
@@ -112,6 +113,9 @@ def insert_base_url_before_relative_path_links(url, images):
     return images
 
 def is_valid_url(url):
+    """
+    Checks if the given url is a valid url
+    """
     import re
     regex = re.compile(
         r'^https?://'  # http:// or https://
@@ -132,12 +136,19 @@ def get_website_object(url):
     """
     try:
         print("[Robly] Parsing {}".format(url))
+        #Parse website
         parser = RoblyParser()
         html_object = parser.get_webpage_as_object(url)
-
+        pagerank = 0
+        try:
+            #Get website pagerank from google
+            pagerank = get_page_rank(url)
+        except:
+            pass
+        #Create website object
         website = Website(html_object.url, html_object.title, list(set(html_object.h1s)), list(set(html_object.links)),
                           list(set(html_object.images)), html_object.body, html_object.description,
-                          list(set(html_object.keywords)), html_object.robots_index)
+                          list(set(html_object.keywords)), html_object.robots_index, pagerank)
         return website
     except Exception as e:
         print(str(e))

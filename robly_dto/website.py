@@ -9,9 +9,10 @@ class Website(object):
     images = []
     non_html = ""
     score = 0
+    pagerank = 0
 
     def __init__(self, url="", title="", h1s=[], links=[], images=[], non_html="",
-                 description="", keywords=[], robots_index=True):
+                 description="", keywords=[], robots_index=True, pagerank=0):
         self.url = url
         self.title = title
         self.description = description
@@ -21,3 +22,4 @@ class Website(object):
         self.links = links
         self.images = images
         self.non_html = non_html
+        self.pagerank = pagerank
