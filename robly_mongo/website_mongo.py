@@ -34,7 +34,8 @@ class WebsiteMongo:
                                                     "h1s": website.h1s,
                                                     "links": website.links,
                                                     "images": website.images,
-                                                    "non_html": website.non_html
+                                                    "non_html": website.non_html,
+                                                    "pagerank": website.pagerank
                                                 },
                                                 ##Set Upsert to True##
                                                 #Insert if it doesn't exist
@@ -65,9 +66,9 @@ class WebsiteMongo:
                     ('description', 'text')
                 ],
                 weights={
-                    'title': 5,
-                    'url': 4,
-                    'description': 3,
+                    'title': 6,
+                    'description': 5,
+                    'url': 2,
                 }
             )
 
@@ -118,6 +119,10 @@ class WebsiteMongo:
         website.robots_index = website_dict['robots_index']
         website.title = website_dict['title']
         website.non_html = website_dict['non_html']
+        try:
+            website.pagerank = website_dict['pagerank']
+        except:
+            pass
         return website
 
     def covert_dict_to_statistics_object(self, stats_dict):

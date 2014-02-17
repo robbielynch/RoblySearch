@@ -167,8 +167,11 @@ def search():
                 websites = get_websites_from_duckduckgo(search_query)
             else:
                 #Add page rank to full text search score
-                for w in websites:
-                    w.score += w.pagerank
+                try:
+                    for w in websites:
+                        w.score += w.pagerank
+                except:
+                    print("[ROBLY] Problem calculating search result score with page rank")
                 #Sort list of websites by score
                 from operator import attrgetter
                 websites.sort(key=attrgetter('score'), reverse=False)
