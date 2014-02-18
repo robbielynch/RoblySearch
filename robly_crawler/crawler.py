@@ -79,6 +79,15 @@ def insert_websites_to_mongo(website_list):
         print("Inserting", w.url, "into mongodb")
         mongo.create_website(w)
 
+def insert_website_to_mongo(website):
+    """
+    Function to insert a list of website objects into mongodb
+    """
+    try:
+        mongo = WebsiteMongo()
+        mongo.create_website(website)
+    except:
+        print("[Robly] Error inserting {} into mongodb".format(website.url))
 
 def crawl_website_insert_to_database(url):
     """
@@ -101,9 +110,9 @@ def crawl_website_insert_to_database(url):
                     #Crawl the valid links
                     if w != url and is_valid_url(w):
                         website_obj = get_website_object(w)
-                        website_list.append(website_obj)
-                    time.sleep(2)
-        insert_websites_to_mongo(website_list)
+                        #website_list.append(website_obj)
+                        insert_website_to_mongo(website_obj)
+                    time.sleep(1)
 
 def insert_base_url_before_relative_path_links(url, images):
     for n, image in enumerate(images):

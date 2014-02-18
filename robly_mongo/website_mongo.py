@@ -13,7 +13,7 @@ class WebsiteMongo:
     def __init__(self):
         self.client = MongoClient(HOST, PORT)
         self.db = self.client[DB_NAME]
-        logging.warning(self.DEBUG_INFO + "HOST={}\nPORT={}\nDB_NAME={}".format(HOST,PORT,DB_NAME))
+        #logging.debug(self.DEBUG_INFO + "HOST={}\nPORT={}\nDB_NAME={}".format(HOST,PORT,DB_NAME))
 
     def create_website(self, website):
         """
@@ -42,6 +42,7 @@ class WebsiteMongo:
                                                 #Update if it already exists
                                                 True)
         if website_id:
+            print("[Robly] inserted {} into mongodb".format(website.url))
             return True
         else:
             return False
@@ -134,3 +135,7 @@ class WebsiteMongo:
                            stats_dict['nscannedObjects'],
                            stats_dict['timeMicros'])
         return stats
+
+    def delete_websites(self):
+        website_collection = self.db[WEBSITE_COLLECTION]
+        website_collection.remove()

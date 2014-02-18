@@ -2,6 +2,7 @@ import requests
 import re
 from roblyparser.tokeniser import Tokens
 from roblyparser.html_object import HTMLObject
+from robly_dto.website import Website
 
 class RoblyParser(object):
 
@@ -17,7 +18,7 @@ class RoblyParser(object):
             'Accept-Encoding':'gzip,deflate,sdch',
             'Accept-Language':'en-US,en;q=0.8',
             'User-Agent':'Mozilla/5 (Windows 7) Gecko'}
-        res = requests.get(url, headers=headers)
+        res = requests.get(url, headers=headers, timeout=2.0)
         string = str(res.content).replace('\\n', "")
         string = string.replace('&amp;', '&')
         string = string.replace('&#32;', ' ')
@@ -41,9 +42,15 @@ class RoblyParser(object):
 
 
     def get_webpage_as_object(self, url):
-        html = self.get_html(url)
-        tokeniser = Tokens()
-        tokens = tokeniser.tokenise(html)
-        objectifier = HTMLObject()
-        objectifier.tokens_to_html_object(tokens, url)
-        return objectifier
+        try:
+            html = self.get_html(url)
+            if html:
+                tokeniser = Tokens()
+                tokens = tokeniser.tokenise(html)
+                objectifier = HTMLObject()
+                objectifier.tokens_to_html_object(tokens, url)
+                return objectifier
+            else:
+                return Website()
+        except:
+            return Website()

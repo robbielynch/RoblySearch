@@ -57,5 +57,9 @@ class TestWebsiteMongo(TestCase):
         self.assertIsNotNone(websites_list)
         self.assertIsNotNone(stats_obj)
 
+    #def test_delete_websites(self):
+    #    mongo = WebsiteMongo()
+    #    mongo.delete_websites()
+
     def tearDown(self):
         pass

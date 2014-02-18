@@ -1,7 +1,7 @@
 from unittest import TestCase
 from robly_crawler.crawler import get_website_object, crawl_website_insert_to_database, merge_link_with_base_url
 import threading
-
+from robly_data.top_websites import top_websites
 __author__ = 'robbie'
 
 
@@ -14,8 +14,8 @@ class TestRobCrawler(TestCase):
     website = ""
 
     def setUp(self):
-        self.website_url = "http://roblynch.info/about"
-        self.website = get_website_object(self.website_url)
+        #self.website_url = "http://roblynch.info/about"
+        #self.website = get_website_object(self.website_url)
         print("done")
 
     def test_title_correct(self):
@@ -60,11 +60,16 @@ class TestRobCrawler(TestCase):
         merged_string = merge_link_with_base_url(url, link)
         self.assertEqual(expected, merged_string)
 
+    def test_get_top_websites(self):
+        for url in top_websites:
+            crawl_website_insert_to_database(url)
+
 
     def test_crawl_these_major_sites(self):
         urls =  [
-                    "http://play.google.com", "https://news.google.ie/",
-                    "http://facebook.com", "http://amazon.com",
+                    #"http://play.google.com",
+                    #"https://news.google.ie/",
+                    #"http://facebook.com", "http://amazon.com",
                     "http://bookdepository.com", "http://mongohq.com",
                     "http://roblynch.info", "http://ierlang.org", "http://erlang.org",
                     "http://python.org", "http://github.com", "http://bitbucket.org",
@@ -73,7 +78,6 @@ class TestRobCrawler(TestCase):
                     "http://aol.ie", "http://wikipedia.com"
                 ]
         for url in urls:
-            t1 = threading.Thread(target=crawl_website_insert_to_database, args=(url,))
-            t1.start()
+            crawl_website_insert_to_database(url)
             print("Crawling -", url)
         print("done")

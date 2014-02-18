@@ -17,7 +17,10 @@ class TestRoblyParser(TestCase):
 
     def test_get_webpage_as_object(self):
         robly_parser = RoblyParser()
-        html_object = robly_parser.get_webpage_as_object("http://github.com")
+        html_object = robly_parser.get_webpage_as_object("http://roblynch.info")
+        for l in list(set(html_object.links)):
+            website = robly_parser.get_webpage_as_object(l)
+            print("")
         self.assertIsNotNone(html_object)
 
     def tearDown(self):
