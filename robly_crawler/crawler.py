@@ -1,5 +1,3 @@
-import requests
-from bs4 import BeautifulSoup
 from robly_dto.website import Website
 from robly_mongo.website_mongo import WebsiteMongo
 import time
@@ -98,7 +96,6 @@ def crawl_website_insert_to_database(url):
     website = get_website_object(url)
     print("Number of website that will be crawled =", len(website.links))
     if website:
-        website_list = [website]
         if website.links:
             for w in website.links:
                 if w:

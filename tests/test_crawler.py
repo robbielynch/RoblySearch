@@ -67,9 +67,9 @@ class TestRobCrawler(TestCase):
 
     def test_crawl_these_major_sites(self):
         urls =  [
-                    #"http://play.google.com",
-                    #"https://news.google.ie/",
-                    #"http://facebook.com", "http://amazon.com",
+                    "http://play.google.com",
+                    "https://news.google.ie/",
+                    "http://facebook.com", "http://amazon.com",
                     "http://bookdepository.com", "http://mongohq.com",
                     "http://roblynch.info", "http://ierlang.org", "http://erlang.org",
                     "http://python.org", "http://github.com", "http://bitbucket.org",

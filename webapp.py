@@ -6,7 +6,7 @@ import threading
 from flask import Flask, request, session, url_for, redirect, render_template
 from robly_mongo.user_mongo import UserMongo
 from robly_crawler.crawler import get_website_object
-from robly_parser.parser import QueryParser
+from robly_parser.query_parser import QueryParser
 from robly_mongo.website_mongo import WebsiteMongo
 from robly_data.random_search_placeholder import search_placeholders
 from robly_crawler import crawler

@@ -1,5 +1,5 @@
 from unittest import TestCase
-from robly_parser.parser import QueryParser, remove_unwanted_chars, tokenise_string, stem_token_list, \
+from robly_parser.query_parser import QueryParser, remove_unwanted_chars, tokenise_string, stem_token_list, \
     remove_stop_words, remove_values_from_list, tokens_to_string, prune_string
 
 __author__ = 'robbie'

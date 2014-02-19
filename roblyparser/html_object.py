@@ -114,7 +114,7 @@ class HTMLObject(object):
             if match:
                 content_match = re.search(r'content=[\'"]([\w, \W\\]*)[\'"][. ]*[/>]*', match.group(0))
                 desc_match = re.search(r'content=[\'"]([\w, \W\\]*)[\'"]', content_match.group(0))
-                description_string = desc_match.group(0)[12:len(desc_match.group(0))-1]
+                description_string = desc_match.group(0)[9:len(desc_match.group(0))-1]
                 return description_string
         except Exception as e:
             print("[RoblyParser] error parsing keywords - {}".format(str(e)))

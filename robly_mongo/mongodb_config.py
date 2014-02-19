@@ -23,11 +23,17 @@ USER_COLLECTION
     Automatically created if it does not exist.
 """
 
-DB_NAME = "test"
-HOST = '127.0.0.1'
-PORT = 27017
+#DB_NAME = "roblysearch"
+#HOST = '127.0.0.1'
+#PORT = 27017
+#WEBSITE_COLLECTION = "websites"
+#USER_COLLECTION = "users"
+
+
+
+#MongoHQ
+DB_NAME = "robbiesearch"
+PORT = 10080
+HOST = 'mongodb://robly:robly@alex.mongohq.com:' + str(PORT) + '/' + DB_NAME
 WEBSITE_COLLECTION = "websites"
 USER_COLLECTION = "users"
-
-
-

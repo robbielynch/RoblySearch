@@ -38,13 +38,13 @@ class RoblyParser(object):
         string = string.replace('&#039;', "'")
         string = string.replace('&#045;', '-')
 
-        return string.rstrip()
+        return string.rstrip(), res.status_code
 
 
     def get_webpage_as_object(self, url):
         try:
-            html = self.get_html(url)
-            if html:
+            html, status = self.get_html(url)
+            if html and status == 200:
                 tokeniser = Tokens()
                 tokens = tokeniser.tokenise(html)
                 objectifier = HTMLObject()
